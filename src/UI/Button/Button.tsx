@@ -6,10 +6,12 @@ interface ButtonProps {
     variant: 'default' | 'accent'
 }
 
-export const Button: FC<PropsWithChildren<ButtonProps>> = (props) => {
+ const Button: FC<PropsWithChildren<ButtonProps>> = (props) => {
     return (
         <button type={props.type} className={`${styles.btn} ${styles[props.variant]}`}>
             {props.children}
         </button>
     );
 };
+
+export default Button;

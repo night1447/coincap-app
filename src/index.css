@@ -1,0 +1,11 @@
+:root {
+    --accent: #226CE0;
+    --hover: #151E3F;
+    --secondary: #DE89BE;
+    --secondary-light: #FDCFF3;
+    --secondary-hover: #A40E4C;
+    --warning: #FFB400;
+    --success: #7FB800;
+    --error: #D7263D;
+    --white: #FFFCF7;
+}
