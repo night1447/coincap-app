@@ -1,0 +1,20 @@
+.title {
+  font-family: Prata, serif;
+  letter-spacing: 0.02em;
+
+  &_first {
+    font-size: 48px;
+  }
+
+  &_second {
+    font-size: 32px;
+  }
+
+  &_third {
+    font-size: 24px;
+  }
+}
+
+.paragraph {
+  font-size: 16px;
+}
