@@ -1,20 +1,38 @@
+@import "../../settings";
 .title {
   font-family: Prata, serif;
   letter-spacing: 0.02em;
+  font-weight: 700;
 
   &_first {
     font-size: 48px;
+    @include adpt($mtab-r) {
+      font-size: 36px;
+    }
+    @include adpt($bmob-r) {
+      font-size: 28px;
+    }
   }
 
   &_second {
     font-size: 32px;
+    @include adpt($mtab-r) {
+      font-size: 28px;
+    }
+    @include adpt($bmob-r) {
+      font-size: 21px;
+    }
+
   }
 
   &_third {
-    font-size: 24px;
+    font-size: 18px;
+    @include adpt($bmob-r) {
+      font-size: 16px;
+    }
   }
 }
 
-.paragraph {
+.text {
   font-size: 16px;
 }

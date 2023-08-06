@@ -1,10 +1,10 @@
 .btn {
   padding: 12px 24px;
   border-radius: 4px;
-  transition: color 0.5s, background-color 0.5s, border 0.5s, box-shadow 0.5s;
+  transition: color 0.5s, background-color 0.5s, border 0.5s, box-shadow 0.5s, outline 0.5s;
   outline: none;
 
-  &:focus {
+  &:active {
     background-color: transparent;
     color: var(--black);
   }
@@ -18,7 +18,7 @@
     background-color: var(--hover);
   }
 
-  &:focus {
+  &:active {
     outline: 2px solid var(--accent);
   }
 }
@@ -31,7 +31,7 @@
     color: var(--white);
   }
 
-  &:focus {
+  &:active {
     outline: 2px solid var(--secondary);
   }
 }
@@ -44,7 +44,7 @@
     background-color: var(--error-hover);
   }
 
-  &:focus {
+  &:active {
     outline: 2px solid var(--error);
   }
 }
