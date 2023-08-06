@@ -6,10 +6,11 @@ type TypographyType = 'h1' | 'h2' | 'h3' | 'p';
 interface TypographyProps {
     type: TypographyType;
     sx?: CSSProperties
+    className?: string
 }
 
 const getCurrentTypeStyles = (type: TypographyType) => {
-    let cssClasses: string = `${styles.text}`;
+    let cssClasses: string = ``;
     if (type === 'h2' || type === 'h1' || type === 'h3') {
         cssClasses += ` ${styles.title}`;
     } else {
@@ -28,8 +29,11 @@ const getCurrentTypeStyles = (type: TypographyType) => {
 
 };
 
-const Typography: FC<PropsWithChildren<TypographyProps>> = ({type, children, sx}) => {
+const Typography: FC<PropsWithChildren<TypographyProps>> = ({type, children, className, sx}) => {
 
-    return React.createElement(type, {className: getCurrentTypeStyles(type), style: sx}, children);
+    return React.createElement(type, {
+        className: getCurrentTypeStyles(type) + ` ${className || ''}`,
+        style: sx
+    }, children);
 };
 export default Typography;

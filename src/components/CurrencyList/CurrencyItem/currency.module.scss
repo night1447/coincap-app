@@ -1,0 +1,37 @@
+@import "../../../settings";
+
+.name {
+  margin-bottom: 5px;
+}
+
+.value {
+  font-weight: 600;
+  @include adpt($stab-r) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.bold {
+  color: var(--accent);
+}
+
+.positive {
+  color: var(--success);
+}
+
+.negative {
+  color: var(--error);
+}
+
+.item {
+  @include adpt($stab-r) {
+    &:nth-child(n) {
+      display: none;
+    }
+
+    &:first-child {
+      display: block;
+    }
+  }
+}
