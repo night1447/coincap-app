@@ -1,3 +1,59 @@
 .btn {
+  padding: 12px 24px;
+  border-radius: 4px;
+  transition: color 0.5s, background-color 0.5s, border 0.5s, box-shadow 0.5s;
+  outline: none;
 
+  &:focus {
+    background-color: transparent;
+    color: var(--black);
+  }
+}
+
+.accent {
+  background-color: var(--accent);
+  color: var(--white);
+
+  &:hover {
+    background-color: var(--hover);
+  }
+
+  &:focus {
+    outline: 2px solid var(--accent);
+  }
+}
+
+.default {
+  background-color: var(--secondary);
+
+  &:hover {
+    background-color: var(--secondary-hover);
+    color: var(--white);
+  }
+
+  &:focus {
+    outline: 2px solid var(--secondary);
+  }
+}
+
+.error {
+  background-color: var(--error);
+  color: var(--white);
+
+  &:hover {
+    background-color: var(--error-hover);
+  }
+
+  &:focus {
+    outline: 2px solid var(--error);
+  }
+}
+
+.circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
 }
