@@ -10,10 +10,16 @@
   border-left-color: transparent;
   border-right-color: transparent;
   outline: none;
-  transition: background-color 0.5s, color 0.5s, border-color 0.5s, box-shadow 0.5s;
+  transition:
+    background-color 0.5s,
+    color 0.5s,
+    border-color 0.5s,
+    box-shadow 0.5s;
   border-radius: 4px 4px 0 0;
 
-  &:hover, &:active, &:focus {
+  &:hover,
+  &:active,
+  &:focus {
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   }
 }
@@ -24,7 +30,8 @@
   border-left-color: transparent;
   border-right-color: transparent;
 
-  &:active, &:focus {
+  &:active,
+  &:focus {
     border-color: var(--secondary-hover);
   }
 }
@@ -35,7 +42,8 @@
   border-left-color: transparent;
   border-right-color: transparent;
 
-  &:active, &:focus {
+  &:active,
+  &:focus {
     border-color: var(--hover);
   }
 }

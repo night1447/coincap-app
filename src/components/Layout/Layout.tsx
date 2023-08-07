@@ -1,13 +1,11 @@
-import {FC, PropsWithChildren} from "react";
-import Header from "../Header/Header.tsx";
+import { FC, PropsWithChildren } from 'react';
+import Header from '../Header/Header.tsx';
 
-const Layout: FC<PropsWithChildren> = ({children}) => {
+const Layout: FC<PropsWithChildren> = ({ children }) => {
     return (
         <>
-            <Header/>
-            <main>
-                {children}
-            </main>
+            <Header />
+            <main>{children}</main>
         </>
     );
 };

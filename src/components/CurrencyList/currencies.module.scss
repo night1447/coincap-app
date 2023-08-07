@@ -5,7 +5,7 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 30px;
-  @include adpt($stab-r){
+  @include adpt($stab-r) {
     gap: 15px;
   }
 }

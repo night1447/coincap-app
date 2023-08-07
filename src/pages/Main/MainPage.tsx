@@ -1,12 +1,12 @@
-import {FC} from "react";
-import Layout from "../../components/Layout/Layout.tsx";
-import MainInterface from "../../components/MainInterface/MainInterface.tsx";
+import { FC } from 'react';
+import Layout from '../../components/Layout/Layout.tsx';
+import MainInterface from '../../components/MainInterface/MainInterface.tsx';
 
- const MainPage: FC = () => {
+const MainPage: FC = () => {
     return (
         <Layout>
-            <MainInterface/>
+            <MainInterface />
         </Layout>
     );
 };
- export default MainPage;
+export default MainPage;

@@ -23,7 +23,8 @@
   right: 30px;
   top: 30px;
 
-  &::before, &::after {
+  &::before,
+  &::after {
     position: absolute;
     content: "";
     width: 30px;
