@@ -1,24 +1,23 @@
-
 html {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 *,
 *::after,
 *::before {
-    box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 ul,
 ol {
-    padding: 0;
+  padding: 0;
 }
 
 a {
-    text-decoration: none;
-    color: inherit;
-    display: inline-block;
-    transition: color 0.3s;
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+  transition: color 0.3s;
 }
 
 body,
@@ -37,56 +36,56 @@ figcaption,
 blockquote,
 dl,
 dd {
-    margin: 0;
+  margin: 0;
 }
 
 ul {
-    list-style: none;
+  list-style: none;
 }
 
 img {
-    max-width: 100%;
-    display: block;
+  max-width: 100%;
+  display: block;
 }
 
 input,
 button,
 textarea,
 select {
-    font: inherit;
-    color: inherit;
-    border-radius: none;
-    background-color: inherit;
-    padding: 0;
-    border: none;
+  font: inherit;
+  color: inherit;
+  border-radius: none;
+  background-color: inherit;
+  padding: 0;
+  border: none;
 }
 
 button {
-    border: none;
-    cursor: pointer;
+  border: none;
+  cursor: pointer;
 }
 
 ::selection {
-    background: var(--black);
-    color: var(--white);
+  background: var(--black);
+  color: var(--white);
 }
 
 ::-moz-selection {
-    background: var(--black);
-    color: var(--white);
+  background: var(--black);
+  color: var(--white);
 }
 
 ::-webkit-selection {
-    background: var(--black);
-    color: var(--white);
+  background: var(--black);
+  color: var(--white);
 }
 
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 input[type="number"] {
-    -moz-appearance: textfield;
+  -moz-appearance: textfield;
 }

@@ -5,7 +5,6 @@ $mtab-r: 992;
 $stab-r: 768;
 $bmob-r: 576;
 
-
 @mixin adpt($width) {
   @media (max-width: #{$width}px) {
     @content;
