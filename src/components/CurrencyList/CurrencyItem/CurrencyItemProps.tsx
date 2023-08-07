@@ -5,13 +5,13 @@ import styles from './currency.module.scss'
 import getCurrency from "../../../utils/getCurrency.ts";
 import getRoundingNumber from "../../../utils/getRoundingNumber.ts";
 
-interface CurrencyItem {
+interface CurrencyItemProps {
     currency: ICurrency
 }
 
 const getSideDifference = (changePercent24Hr: string) => changePercent24Hr[0] !== '-';
 
-const CurrencyItem: FC<CurrencyItem> = ({currency}) => {
+const CurrencyItem: FC<CurrencyItemProps> = ({currency}) => {
     return (
         <li className={styles.item}>
             <Typography type={'h3'} className={styles.name}>

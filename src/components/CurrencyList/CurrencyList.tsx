@@ -1,5 +1,5 @@
 import {FC, useEffect, useState} from "react";
-import CurrencyItem from "./CurrencyItem/CurrencyItem.tsx";
+import CurrencyItem from "./CurrencyItem/CurrencyItemProps.tsx";
 import styles from './currencies.module.scss'
 import $api from "../../api";
 import {ICurrency} from "../../models";

@@ -24,10 +24,12 @@ const titles: ITitle[] = [
 interface CoinsProps {
     offset: number
     step: number
+    onChange: (coin: ICurrency) => void
 }
 
-const Coins: FC<CoinsProps> = ({offset, step}) => {
+const Coins: FC<CoinsProps> = ({offset, step, onChange}) => {
     const [coins, setCoins] = useState<ICurrency[]>([]);
+
     useEffect(() => {
         $api.getCoins({step, offset}).then(items => {
             setCoins(prevState => [...prevState, ...items])
@@ -41,7 +43,7 @@ const Coins: FC<CoinsProps> = ({offset, step}) => {
                 {titles.map(item => <th key={item.title}
                                         className={`${styles.title} ${item.className || ''}`}>{item.title}</th>)}
             </tr>
-            {coins.map(item => <Coin key={Math.random()} coin={item}/>)}
+            {coins.map(item => <Coin key={Math.random()} onChange={onChange} coin={item}/>)}
             </tbody>
         </table>
     );

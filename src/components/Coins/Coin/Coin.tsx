@@ -1,4 +1,4 @@
-import {FC} from "react";
+import React, {FC} from "react";
 import {ICurrency} from "../../../models";
 import styles from '../coins.module.scss'
 import {useNavigate} from "react-router";
@@ -7,16 +7,18 @@ import getRoundingNumber from "../../../utils/getRoundingNumber.ts";
 
 interface CoinProps {
     coin: ICurrency
+    onChange: (coin: ICurrency) => void
 }
 
-const Coin: FC<CoinProps> = ({coin}) => {
+const Coin: FC<CoinProps> = ({coin, onChange}) => {
     const navigate = useNavigate();
     const openCoinHandler = () => {
         navigate(`${coin.id}`);
     };
 
-    const addHandler = e => {
-
+    const openModalHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.stopPropagation();
+        onChange(coin);
     };
 
     return (
@@ -43,11 +45,9 @@ const Coin: FC<CoinProps> = ({coin}) => {
             <td className={styles.tabletHidden}>
                 {getRoundingNumber(+coin.volumeUsd24Hr)}
             </td>
-            <td>
+            <td className={styles.relative}>
                 {getRoundingNumber(+coin.changePercent24Hr)}
-            </td>
-            <td>
-                <Button type={'button'} variant={'accent'} isCircle={true} onClick={(e) => addHandler(e)}
+                <Button type={'button'} variant={'success'} isCircle={true} onClick={openModalHandler}
                         className={styles.add}>+</Button>
             </td>
         </tr>

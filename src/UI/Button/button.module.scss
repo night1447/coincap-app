@@ -49,6 +49,16 @@
   }
 }
 
+.success {
+  background-color: var(--success);
+
+  &:hover {
+    background-color: var(--success);
+    color: var(--white);
+    box-shadow: 10px 10px 10px -10px rgba(255, 255, 255, 0.6) inset;
+  }
+}
+
 .circle {
   display: flex;
   align-items: center;
