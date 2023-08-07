@@ -2,7 +2,7 @@ import {ICurrency} from "../../models";
 import Coin from "./Coin/Coin.tsx";
 import styles from './coins.module.scss'
 import {FC, useEffect, useState} from "react";
-import axios from "axios";
+import $api from "../../api";
 
 interface ITitle {
     className: string
@@ -22,18 +22,20 @@ const titles: ITitle[] = [
 ];
 
 interface CoinsProps {
-    limit: number
+    offset: number
+    step: number
+    onChange: (coin: ICurrency) => void
 }
 
-const Coins: FC<CoinsProps> = ({limit}) => {
+const Coins: FC<CoinsProps> = ({offset, step, onChange}) => {
     const [coins, setCoins] = useState<ICurrency[]>([]);
+
     useEffect(() => {
-        const response = axios.get('https://api.coincap.io/v2/assets');
-        response.then(answer => {
-            const coins: ICurrency[] = answer.data.data;
-            setCoins(coins);
+        $api.getCoins({step, offset}).then(items => {
+            setCoins(prevState => [...prevState, ...items])
         });
-    }, [])
+    }, [offset])
+
     return (
         <table className={styles.table}>
             <tbody>
@@ -41,7 +43,7 @@ const Coins: FC<CoinsProps> = ({limit}) => {
                 {titles.map(item => <th key={item.title}
                                         className={`${styles.title} ${item.className || ''}`}>{item.title}</th>)}
             </tr>
-            {coins.map(item => <Coin key={item.id} coin={item}/>)}
+            {coins.map(item => <Coin key={Math.random()} onChange={onChange} coin={item}/>)}
             </tbody>
         </table>
     );

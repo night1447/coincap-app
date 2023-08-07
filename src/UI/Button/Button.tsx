@@ -1,10 +1,10 @@
-import {FC, PropsWithChildren} from "react";
+import React, {FC, PropsWithChildren} from "react";
 import styles from './button.module.scss'
 
 interface ButtonProps {
     type: 'button' | 'submit' | 'reset'
-    variant: 'default' | 'accent' | 'error'
-    onClick?: () => void
+    variant: 'default' | 'accent' | 'error' | 'success'
+    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
     className?: string
     isCircle?: boolean
 }

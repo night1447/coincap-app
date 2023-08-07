@@ -11,3 +11,8 @@ export interface ICurrency {
     changePercent24Hr: string
     "vwap24Hr": string
 }
+
+export interface IHistory {
+    priceUsd: string
+    time: number
+}

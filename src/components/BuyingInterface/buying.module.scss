@@ -1,0 +1,36 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.inner, .total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.price {
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--success);
+}
+
+.total{
+  &_price{
+    font-weight: 700;
+    color: var(--accent);
+  }
+}

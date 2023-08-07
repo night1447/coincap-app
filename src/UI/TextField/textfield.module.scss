@@ -1,0 +1,41 @@
+.label {
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+  padding: 10px 12px 8px;
+  border: 2px solid;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  outline: none;
+  transition: background-color 0.5s, color 0.5s, border-color 0.5s, box-shadow 0.5s;
+  border-radius: 4px 4px 0 0;
+
+  &:hover, &:active, &:focus {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  }
+}
+
+.default {
+  border-color: var(--secondary);
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;
+
+  &:active, &:focus {
+    border-color: var(--secondary-hover);
+  }
+}
+
+.accent {
+  border-color: var(--accent);
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;
+
+  &:active, &:focus {
+    border-color: var(--hover);
+  }
+}

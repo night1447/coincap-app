@@ -15,15 +15,15 @@
 }
 
 .row {
+  position: relative;
   transition: background-color 0.5s, color 0.5s;
-
+  cursor: pointer;
   &:hover {
     background-color: rgba(34, 108, 224, 0.7);
     color: var(--white);
   }
-
   td {
-    padding: 10px;
+    padding: 20px 10px;
     @include adpt($bmob-r) {
       padding: 5px;
     }
@@ -40,4 +40,18 @@
   @include adpt($bmob-r) {
     display: none;
   }
+}
+
+.relative {
+  position: relative;
+}
+
+.add {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  padding: 0;
 }
