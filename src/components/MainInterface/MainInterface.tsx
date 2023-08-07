@@ -4,19 +4,18 @@ import Section from "../../UI/Section/Section.tsx";
 import styles from './main.module.scss'
 import {useState} from "react";
 
-const initialLimit = 60;
-const step = 10;
+const offsetStep = 30;
 const MainInterface = () => {
-    const [limit, setLimit] = useState<number>(initialLimit);
+    const [offset, setOffset] = useState<number>(0);
 
     const changeLimitHandler = () => {
-        setLimit(prevState => prevState + step);
+        setOffset(prevState => prevState + offsetStep);
     };
 
     return (
         <Section>
             <div className={styles.wrapper}>
-                <Coins limit={limit}/>
+                <Coins offset={offset} step={offsetStep}/>
                 <Button type={'button'} variant={'accent'} onClick={changeLimitHandler}>Показать больше</Button>
             </div>
         </Section>

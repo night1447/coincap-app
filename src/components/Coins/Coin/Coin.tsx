@@ -1,14 +1,26 @@
 import {FC} from "react";
 import {ICurrency} from "../../../models";
 import styles from '../coins.module.scss'
+import {useNavigate} from "react-router";
+import Button from "../../../UI/Button/Button.tsx";
+import getRoundingNumber from "../../../utils/getRoundingNumber.ts";
 
 interface CoinProps {
     coin: ICurrency
 }
 
 const Coin: FC<CoinProps> = ({coin}) => {
+    const navigate = useNavigate();
+    const openCoinHandler = () => {
+        navigate(`${coin.id}`);
+    };
+
+    const addHandler = e => {
+
+    };
+
     return (
-        <tr className={styles.row}>
+        <tr className={styles.row} onClick={openCoinHandler}>
             <td className={`${styles.mobileHidden}`}>
                 {coin.rank}
             </td>
@@ -17,22 +29,26 @@ const Coin: FC<CoinProps> = ({coin}) => {
                 {coin.symbol}
             </td>
             <td>
-                {coin.priceUsd.slice(0, 9)}
+                {getRoundingNumber(+coin.priceUsd)}
             </td>
             <td className={`${styles.mobileHidden}`}>
-                {coin.marketCapUsd.slice(0, 9)}
+                {getRoundingNumber(+coin.marketCapUsd)}
             </td>
             <td className={styles.tabletHidden}>
-                {coin.vwap24Hr?.slice(0, 9)}
+                {getRoundingNumber(+coin.vwap24Hr)}
             </td>
             <td className={styles.tabletHidden}>
-                {coin.supply.slice(0, 9)}
+                {getRoundingNumber(+coin.supply)}
             </td>
             <td className={styles.tabletHidden}>
-                {coin.volumeUsd24Hr.slice(0, 9)}
+                {getRoundingNumber(+coin.volumeUsd24Hr)}
             </td>
             <td>
-                {coin.changePercent24Hr.slice(0,5)}
+                {getRoundingNumber(+coin.changePercent24Hr)}
+            </td>
+            <td>
+                <Button type={'button'} variant={'accent'} isCircle={true} onClick={(e) => addHandler(e)}
+                        className={styles.add}>+</Button>
             </td>
         </tr>
     );

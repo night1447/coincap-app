@@ -2,6 +2,8 @@ import {FC} from "react";
 import {ICurrency} from "../../../models";
 import Typography from "../../../UI/Typography/Typography.tsx";
 import styles from './currency.module.scss'
+import getCurrency from "../../../utils/getCurrency.ts";
+import getRoundingNumber from "../../../utils/getRoundingNumber.ts";
 
 interface CurrencyItem {
     currency: ICurrency
@@ -13,10 +15,11 @@ const CurrencyItem: FC<CurrencyItem> = ({currency}) => {
     return (
         <li className={styles.item}>
             <Typography type={'h3'} className={styles.name}>
-                BTC
+                {currency.symbol}
             </Typography>
-            <Typography type={'p'} className={`${styles.value} ${getSideDifference(currency.changePercent24Hr)? styles.positive : styles.negative}`}>
-                <span className={styles.bold}>1230USD</span> - 123(0.09%)
+            <Typography type={'p'}
+                        className={`${styles.value} ${getSideDifference(currency.changePercent24Hr) ? styles.positive : styles.negative}`}>
+                <span className={styles.bold}>{getRoundingNumber(+currency.priceUsd)}{getCurrency()}</span>({getRoundingNumber(+currency.changePercent24Hr)}%)
             </Typography>
             {/*TODO: Link to page currency*/}
         </li>
