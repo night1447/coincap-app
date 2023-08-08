@@ -45,7 +45,6 @@ const MainInterface = () => {
 
   const closeModalHandler = () => {
     setModalSettings((prevState) => ({ ...prevState, showModal: false }));
-    bodyScroll.unlock();
   };
 
   return (

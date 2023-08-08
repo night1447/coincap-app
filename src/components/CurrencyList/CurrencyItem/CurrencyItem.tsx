@@ -1,18 +1,28 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { ICurrency } from '../../../models';
 import Typography from '../../../UI/Typography/Typography.tsx';
 import styles from './currency.module.scss';
 import getCurrency from '../../../utils/getCurrency.ts';
-import getRoundingNumber from '../../../utils/getRoundingNumber.ts';
+import getDifferencePrice, { IDifference } from '../../../utils/getDifferencePrice.ts';
+import useTypedSelector from '../../../hooks/useTypedSelector.ts';
+import { addLocalStorage, getLocalStorage } from '../../../utils/localStorage.ts';
 
 interface CurrencyItemProps {
     currency: ICurrency;
 }
 
-const getSideDifference = (changePercent24Hr: string) =>
-    changePercent24Hr[0] !== '-';
-
 const CurrencyItem: FC<CurrencyItemProps> = ({ currency }) => {
+    const [difference, setDifference] = useState<IDifference>();
+    const briefCase = useTypedSelector(state => state.briefCase);
+
+    //TODO:correct CurrencyItem
+    useEffect(() => {
+        const beginningSum = getLocalStorage('beginningValue') || 0;
+        setDifference(getDifferencePrice(+briefCase.total, +beginningSum));
+        addLocalStorage('beginningValue', briefCase.total.toString() || '0');
+    }, []);
+
+
     return (
         <li className={styles.item}>
             <Typography type={'h3'} className={styles.name}>
@@ -20,19 +30,14 @@ const CurrencyItem: FC<CurrencyItemProps> = ({ currency }) => {
             </Typography>
             <Typography
                 type={'p'}
-                className={`${styles.value} ${
-                    getSideDifference(currency.changePercent24Hr)
-                        ? styles.positive
-                        : styles.negative
-                }`}
+                className={`${styles.value} ${difference?.className}`}
             >
         <span className={styles.bold}>
-          {getRoundingNumber(+currency.priceUsd)}
+          {briefCase.total}
             {getCurrency()}
         </span>
-                ({getRoundingNumber(+currency.changePercent24Hr)}%)
+                {difference?.value}({difference?.percent}%)
             </Typography>
-            {/*TODO: Link to page currency*/}
         </li>
     );
 };

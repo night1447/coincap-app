@@ -9,6 +9,7 @@ import Graphic from '../Graphic/Graphic.tsx';
 import $api from '../../api';
 import Button from '../../UI/Button/Button.tsx';
 import { useNavigate } from 'react-router';
+import getStylePriceDifference from '../../utils/getStylePriceDifference.ts';
 
 interface CoinProps {
   id: string;
@@ -62,9 +63,7 @@ const CoinInterface: FC<CoinProps> = ({ id }) => {
                 {getCurrency()}
                 <span
                     className={`${styles.price_value} ${
-                        coin.changePercent24Hr[0] === '-'
-                            ? styles.negative
-                            : styles.positive
+                        getStylePriceDifference(coin.changePercent24Hr)
                     }`}
                 >
                 {getRoundingNumber(+coin.changePercent24Hr)}%

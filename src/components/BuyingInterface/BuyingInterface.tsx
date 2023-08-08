@@ -7,6 +7,8 @@ import Typography from '../../UI/Typography/Typography.tsx';
 import getCurrency from '../../utils/getCurrency.ts';
 import getRoundingNumber from '../../utils/getRoundingNumber.ts';
 import Message, { IMessageType } from '../../UI/Message/Message.tsx';
+import { useDispatch } from 'react-redux';
+import { addCoinAction } from '../../store/reducers/BriefCase/actions.ts';
 
 interface BuyingInterfaceProps {
   coin: ICurrency;
@@ -27,6 +29,7 @@ const checkZero = (value: number) => (value > 0 ? value : 0);
 const INPUT_STEP = 0.01;
 const BuyingInterface: FC<BuyingInterfaceProps> = ({ coin }) => {
   const [value, setValue] = useState(0);
+  const dispatch = useDispatch();
   const [messageSettings, setMessageSettings] =
       useState<IMessageSettings>(initialState);
   const submitFormHandler = (event: React.FormEvent) => {
@@ -39,6 +42,11 @@ const BuyingInterface: FC<BuyingInterfaceProps> = ({ coin }) => {
     } else {
       message = `Отлично, ${coin.symbol} добавлена в ваш кошелек в размере ${value}`;
       type = 'success';
+      dispatch(addCoinAction({
+        coinId: coin.id,
+        price: +coin.priceUsd,
+        count: value,
+      }));
       setValue(0);
     }
     setMessageSettings({
