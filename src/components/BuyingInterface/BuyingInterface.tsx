@@ -8,7 +8,7 @@ import getCurrency from '../../utils/getCurrency.ts';
 import getRoundingNumber from '../../utils/getRoundingNumber.ts';
 import Message, { IMessageType } from '../../UI/Message/Message.tsx';
 import { useDispatch } from 'react-redux';
-import { addCoinAction } from '../../store/reducers/briefCase/actions.ts';
+import { addCoinAction } from '../../store/reducers/BriefCase/actions.ts';
 
 interface BuyingInterfaceProps {
   coin: ICurrency;
@@ -43,7 +43,8 @@ const BuyingInterface: FC<BuyingInterfaceProps> = ({ coin }) => {
       message = `Отлично, ${coin.symbol} добавлена в ваш кошелек в размере ${value}`;
       type = 'success';
       dispatch(addCoinAction({
-        coin: coin,
+        coinId: coin.id,
+        price: +coin.priceUsd,
         count: value,
       }));
       setValue(0);

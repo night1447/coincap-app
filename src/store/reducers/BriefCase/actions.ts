@@ -1,9 +1,10 @@
 import Slice from './slice.ts';
-import { ICoin } from '../../../models';
+import { IAdditionalCoin } from './types.ts';
 
 const actions = Slice.actions;
 
-const addCoinAction = (coin: ICoin) => actions.addCoin(coin);
-const removeCoinAction = (coinId: string) => actions.removeCoin(coinId);
+const addCoinAction = (coin: IAdditionalCoin) => actions.addCoin(coin);
+const removeCoinAction = (coin: IAdditionalCoin) => actions.removeCoin(coin);
+const changeTotalAction = (total: number) => actions.changeTotal(total);
 
-export { addCoinAction, removeCoinAction };
+export { addCoinAction, removeCoinAction, changeTotalAction };

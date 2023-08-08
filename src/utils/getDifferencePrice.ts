@@ -8,7 +8,9 @@ export interface IDifference {
 }
 
 const getDifferencePrice = (currentSum: number, beginSum: number): IDifference => {
-    const value = beginSum - currentSum;
+    //TODO:normal difference price
+    const value = getRoundingNumber(beginSum - currentSum);
+    console.log(currentSum, beginSum);
     let percent = 0;
     if (currentSum) {
         percent = (currentSum - beginSum) / currentSum;

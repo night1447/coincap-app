@@ -18,6 +18,11 @@ export interface IHistory {
 }
 
 export interface ICoin {
+  coinId: string;
+  count: number;
+}
+
+export interface IWideCoin {
   coin: ICurrency;
   count: number;
 }

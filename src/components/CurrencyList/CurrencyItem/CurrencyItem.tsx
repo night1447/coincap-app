@@ -6,26 +6,23 @@ import getCurrency from '../../../utils/getCurrency.ts';
 import getDifferencePrice, { IDifference } from '../../../utils/getDifferencePrice.ts';
 import useTypedSelector from '../../../hooks/useTypedSelector.ts';
 import { addLocalStorage, getLocalStorage } from '../../../utils/localStorage.ts';
-import calculateTotalBriefCase from '../../../utils/calculateTotalBriefCase.ts';
 
 interface CurrencyItemProps {
     currency: ICurrency;
-    total: number;
 }
 
-const CurrencyItem: FC<CurrencyItemProps> = ({ currency, total }) => {
+const CurrencyItem: FC<CurrencyItemProps> = ({ currency }) => {
     const [difference, setDifference] = useState<IDifference>();
-    const coins = useTypedSelector(state => state.briefCase.coins);
+    const briefCase = useTypedSelector(state => state.briefCase);
+
+    //TODO:correct CurrencyItem
     useEffect(() => {
-        addLocalStorage('beginningValue', getLocalStorage('briefCaseValue') || '0');
         const beginningSum = getLocalStorage('beginningValue') || 0;
-        const currentSum = getLocalStorage('briefCaseValue') || 0;
-        setDifference(getDifferencePrice(+currentSum, +beginningSum));
+        setDifference(getDifferencePrice(+briefCase.total, +beginningSum));
+        addLocalStorage('beginningValue', briefCase.total.toString() || '0');
     }, []);
-    useEffect(() => {
-        const total = calculateTotalBriefCase(coins);
-        addLocalStorage('briefCaseValue', total.toString());
-    }, [coins]);
+
+
     return (
         <li className={styles.item}>
             <Typography type={'h3'} className={styles.name}>
@@ -36,7 +33,7 @@ const CurrencyItem: FC<CurrencyItemProps> = ({ currency, total }) => {
                 className={`${styles.value} ${difference?.className}`}
             >
         <span className={styles.bold}>
-          {total}
+          {briefCase.total}
             {getCurrency()}
         </span>
                 {difference?.value}({difference?.percent}%)

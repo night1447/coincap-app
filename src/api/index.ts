@@ -16,6 +16,7 @@ interface ISettings {
   limit?: number;
   offset?: number;
   step?: number;
+  ids?: string[];
 }
 
 const BASE_LIMIT = 60;
@@ -23,11 +24,12 @@ const BASE_OFFSET = 0;
 const createSettings = (settings?: ISettings) => {
   let offset: number = settings?.offset || BASE_OFFSET;
   let limit: number = settings?.limit || BASE_LIMIT;
+  const ids: string = settings?.ids?.length ? `&ids=${settings.ids.join(',')}` : '';
   if (settings?.step && settings.offset) {
     offset = limit + settings.offset - settings.step;
     limit = settings.step;
   }
-  return `?limit=${limit}&offset=${offset}`;
+  return `?limit=${limit}&offset=${offset}${ids}`;
 };
 
 const $api = {
