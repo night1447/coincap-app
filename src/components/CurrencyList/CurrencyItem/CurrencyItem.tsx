@@ -5,6 +5,8 @@ import styles from './currency.module.scss';
 import getCurrency from '../../../utils/getCurrency.ts';
 import getDifferencePrice, { IDifference } from '../../../utils/getDifferencePrice.ts';
 import useTypedSelector from '../../../hooks/useTypedSelector.ts';
+import { addLocalStorage, getLocalStorage } from '../../../utils/localStorage.ts';
+import calculateTotalBriefCase from '../../../utils/calculateTotalBriefCase.ts';
 
 interface CurrencyItemProps {
     currency: ICurrency;
@@ -15,7 +17,14 @@ const CurrencyItem: FC<CurrencyItemProps> = ({ currency, total }) => {
     const [difference, setDifference] = useState<IDifference>();
     const coins = useTypedSelector(state => state.briefCase.coins);
     useEffect(() => {
-        setDifference(getDifferencePrice(currency, coins));
+        addLocalStorage('beginningValue', getLocalStorage('briefCaseValue') || '0');
+        const beginningSum = getLocalStorage('beginningValue') || 0;
+        const currentSum = getLocalStorage('briefCaseValue') || 0;
+        setDifference(getDifferencePrice(+currentSum, +beginningSum));
+    }, []);
+    useEffect(() => {
+        const total = calculateTotalBriefCase(coins);
+        addLocalStorage('briefCaseValue', total.toString());
     }, [coins]);
     return (
         <li className={styles.item}>
@@ -32,7 +41,6 @@ const CurrencyItem: FC<CurrencyItemProps> = ({ currency, total }) => {
         </span>
                 {difference?.value}({difference?.percent}%)
             </Typography>
-            {/*TODO: Link to page currency*/}
         </li>
     );
 };
