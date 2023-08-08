@@ -14,16 +14,8 @@
 
 .bold {
   color: var(--accent);
+  margin-right: 6px;
 }
-
-.positive {
-  color: var(--success);
-}
-
-.negative {
-  color: var(--error);
-}
-
 .item {
   @include adpt($stab-r) {
     &:nth-child(n) {

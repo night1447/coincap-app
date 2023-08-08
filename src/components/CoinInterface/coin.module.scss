@@ -47,14 +47,6 @@
   color: var(--accent);
 }
 
-.positive {
-  color: var(--success);
-}
-
-.negative {
-  color: var(--error);
-}
-
 .graphic {
   display: flex;
   justify-content: center;
@@ -65,4 +57,10 @@
 
 .back {
   margin-bottom: 30px;
+}
+
+.price {
+  &_value {
+    margin-left: 12px;
+  }
 }

@@ -16,3 +16,8 @@ export interface IHistory {
   priceUsd: string;
   time: number;
 }
+
+export interface ICoin {
+  coin: ICurrency;
+  count: number;
+}

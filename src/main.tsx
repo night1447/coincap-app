@@ -3,7 +3,11 @@ import './index.css';
 import './reset.css';
 import { RouterProvider } from 'react-router-dom';
 import index from './routing';
+import { Provider } from 'react-redux';
+import store from './store';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-    <RouterProvider router={index} />,
+    <Provider store={store}>
+        <RouterProvider router={index} />,
+    </Provider>,
 );
