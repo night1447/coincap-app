@@ -1,0 +1,64 @@
+@import "../../../settings";
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--accent);
+  padding: 20px 0;
+  @include adpt($bmob-r) {
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+}
+
+.subtitle {
+  margin-bottom: 6px;
+}
+
+.count {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @include adpt($bmob-r) {
+    word-wrap: anywhere;
+    order: 3;
+    flex-basis: 100%;
+  }
+}
+
+.empty {
+  font-size: 18px;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  & b {
+    color: var(--success);
+  }
+}
+
+.delete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    path {
+      fill: var(--white);
+    }
+  }
+
+  & svg {
+    flex-shrink: 0;
+    width: 32px;
+  }
+
+  path {
+    transition: fill 0.5s;
+  }
+}
+
