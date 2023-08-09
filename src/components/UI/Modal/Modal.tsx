@@ -3,7 +3,7 @@ import Portal from '../Portal/Portal.tsx';
 import styles from './modal.module.scss';
 import Button from '../Button/Button.tsx';
 import { SrOnly } from '../SrOnly/SrOnly.tsx';
-import bodyScroll from '../../utils/bodyScroll.ts';
+import bodyScroll from '../../../utils/bodyScroll.ts';
 
 interface ModalProps {
     showModal: boolean;
@@ -23,13 +23,12 @@ const Modal: FC<PropsWithChildren<ModalProps>> = ({
                 <div className={`${styles.modal} ${className || ''}`}>{children}</div>
                 <Button
                     type={'button'}
-                    variant={'accent'}
+                    variant={'close'}
                     className={styles.close}
                     onClick={() => {
                         onClose();
                         bodyScroll.unlock();
                     }}
-                    isCircle={true}
                 >
                     <SrOnly>Закрыть модальное окно</SrOnly>
                 </Button>

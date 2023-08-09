@@ -1,10 +1,10 @@
 import { FC } from 'react';
-import Typography from '../../UI/Typography/Typography.tsx';
+import Typography from '../UI/Typography/Typography.tsx';
 import useTypedSelector from '../../hooks/useTypedSelector.ts';
 import styles from './briefcase.module.scss';
 import BriefCaseCoins from './BriefCaseCoins/BriefCaseCoins.tsx';
 import getCurrency from '../../utils/getCurrency.ts';
-import Modal from '../../UI/Modal/Modal.tsx';
+import Modal from '../UI/Modal/Modal.tsx';
 
 interface BriefCaseInterfaceProps {
     showBriefCase: boolean;

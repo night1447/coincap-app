@@ -7,14 +7,14 @@ interface ITitle {
 }
 
 const titles: ITitle[] = [
-    { className: `${styles.mobileHidden}`, title: 'Rank' },
-    { className: '', title: 'Name' },
-    { className: '', title: 'Price' },
-    { className: `${styles.mobileHidden}`, title: 'Market cap' },
+    { className: `${styles.mobileHidden}`, title: 'Рейтинг' },
+    { className: '', title: 'Имя' },
+    { className: '', title: 'Цена' },
+    { className: `${styles.mobileHidden}`, title: 'Рыночная капитализация' },
     { className: `${styles.tabletHidden}`, title: 'VWAP(24Hr)' },
-    { className: `${styles.tabletHidden}`, title: 'Supply' },
-    { className: `${styles.tabletHidden}`, title: 'Volume(24Hr)' },
-    { className: '', title: 'Change(24Hr)' },
+    { className: `${styles.tabletHidden}`, title: 'Снабжение' },
+    { className: `${styles.tabletHidden}`, title: 'Объем(24Hr)' },
+    { className: '', title: 'Изменения(24Hr)' },
 ];
 
 export const Titles: FC = () => {

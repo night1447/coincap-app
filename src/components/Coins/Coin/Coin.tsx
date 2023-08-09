@@ -2,8 +2,9 @@ import React, { FC } from 'react';
 import { ICurrency } from '../../../models';
 import styles from '../coins.module.scss';
 import { useNavigate } from 'react-router';
-import Button from '../../../UI/Button/Button.tsx';
+import Button from '../../UI/Button/Button.tsx';
 import getCurrency from '../../../utils/getCurrency.ts';
+import getStylePriceDifference from '../../../utils/getStylePriceDifference.ts';
 
 interface CoinProps {
     coin: ICurrency;
@@ -38,8 +39,9 @@ const Coin: FC<CoinProps> = ({ coin, onChange }) => {
         <td className={styles.tabletHidden}>
             {coin.volumeUsd24Hr}{getCurrency()}
         </td>
-        <td className={styles.relative}>
-            {coin.changePercent24Hr}%
+        <td className={`${styles.relative}`}>
+            <b
+                className={getStylePriceDifference(coin.changePercent24Hr.toString())}>{coin.changePercent24Hr}%</b>
             <Button
                 type={'button'}
                 variant={'success'}

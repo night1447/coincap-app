@@ -1,10 +1,10 @@
 import Coins from '../Coins/Coins.tsx';
-import Button from '../../UI/Button/Button.tsx';
-import Section from '../../UI/Section/Section.tsx';
+import Button from '../UI/Button/Button.tsx';
+import Section from '../UI/Section/Section.tsx';
 import styles from './main.module.scss';
 import { useState } from 'react';
 import { ICurrency } from '../../models';
-import Modal from '../../UI/Modal/Modal.tsx';
+import Modal from '../UI/Modal/Modal.tsx';
 import AddInterface from '../AddInterface/AddInterface.tsx';
 
 const OFFSET_STEP = 30;

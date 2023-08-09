@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { ICurrency } from '../../../models';
 import styles from './head.module.scss';
-import Typography from '../../../UI/Typography/Typography.tsx';
+import Typography from '../../UI/Typography/Typography.tsx';
 import getCurrency from '../../../utils/getCurrency.ts';
 import getStylePriceDifference from '../../../utils/getStylePriceDifference.ts';
 

@@ -1,8 +1,8 @@
 import { FC, useState } from 'react';
-import Button from '../../UI/Button/Button.tsx';
+import Button from '../UI/Button/Button.tsx';
 import styles from './profile.module.scss';
 import BriefCaseInterface from '../BriefCaseInterface/BriefCaseInterface.tsx';
-import { ProfileIcon } from '../../UI/Icons';
+import { ProfileIcon } from '../UI/Icons';
 
 const Profile: FC = () => {
     const [showBriefCase, setShowBriefCase] = useState(false);

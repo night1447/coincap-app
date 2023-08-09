@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import Profile from '../Profile/Profile.tsx';
-import CurrencyList from '../CurrencyList/CurrencyList.tsx';
+import Profile from '../../Profile/Profile.tsx';
+import CurrencyList from '../../CurrencyList/CurrencyList.tsx';
 import Container from '../../UI/Container/Container.tsx';
 import styles from './header.module.scss';
 

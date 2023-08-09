@@ -1,10 +1,10 @@
 import { FC, useEffect, useState } from 'react';
-import Section from '../../UI/Section/Section.tsx';
+import Section from '../UI/Section/Section.tsx';
 import styles from './coin.module.scss';
 import { ICurrency } from '../../models';
 import Graphic from '../Graphic/Graphic.tsx';
 import $api from '../../api';
-import Button from '../../UI/Button/Button.tsx';
+import Button from '../UI/Button/Button.tsx';
 import { useNavigate } from 'react-router';
 import BuyingInterface from '../BuyingInterface/BuyingInterface.tsx';
 import Head from './Head/Head.tsx';

@@ -21,22 +21,4 @@
   z-index: 11;
   right: 30px;
   top: 30px;
-
-  &::before,
-  &::after {
-    position: absolute;
-    content: "";
-    width: 30px;
-    height: 4px;
-    border-radius: 2px;
-    background-color: var(--white);
-  }
-
-  &::before {
-    transform: rotate(45deg);
-  }
-
-  &::after {
-    transform: rotate(-45deg);
-  }
 }

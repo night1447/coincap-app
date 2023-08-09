@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import { ICurrency } from '../../../models';
-import Typography from '../../../UI/Typography/Typography.tsx';
+import Typography from '../../UI/Typography/Typography.tsx';
 import styles from './currency.module.scss';
 import getCurrency from '../../../utils/getCurrency.ts';
 import getDifferencePrice, { IDifference } from '../../../utils/getDifferencePrice.ts';
