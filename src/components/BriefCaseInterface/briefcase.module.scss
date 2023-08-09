@@ -28,21 +28,6 @@
   margin-bottom: 24px;
 }
 
-.list {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  width: 100%;
-  margin-bottom: 30px;
-  padding-left: 12px;
-  max-height: 50dvh;
-  overflow-y: auto;
-  overflow-x: hidden;
-  @include adpt($bmob-r) {
-    padding-left: 0;
-  }
-}
-
 .item {
   display: flex;
   align-items: center;
