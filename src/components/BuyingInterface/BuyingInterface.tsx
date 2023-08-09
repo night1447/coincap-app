@@ -7,6 +7,7 @@ import Message, { IMessageType } from '../UI/Message/Message.tsx';
 import Total from './Total/Total.tsx';
 import ProductInformation from './ProductInformation/ProductInformation.tsx';
 import context from '../../context';
+import getRoundingNumber from '../../utils/getRoundingNumber.ts';
 
 interface BuyingInterfaceProps {
   coin: ICurrency;
@@ -24,9 +25,9 @@ const initialState: IMessageSettings = {
   type: '',
 };
 const INPUT_STEP = 0.01;
-const checkCorrectionNumber = (value: number) => (value > 0 ? value : 0);
+const checkCorrectionNumber = (value: string) => (+value >= 0 ? value : 0);
 const BuyingInterface: FC<BuyingInterfaceProps> = ({ coin }) => {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState<string>('');
   const { addCoin } = useContext(context);
   const [messageSettings, setMessageSettings] =
       useState<IMessageSettings>(initialState);
@@ -34,7 +35,7 @@ const BuyingInterface: FC<BuyingInterfaceProps> = ({ coin }) => {
     event.preventDefault();
     let message: string;
     let type: IMessageType;
-    if (value === 0) {
+    if (value && value === '0') {
       message = `Увы нечего добавлять, вы не увеличили количество валюты`;
       type = 'error';
     } else {
@@ -43,9 +44,9 @@ const BuyingInterface: FC<BuyingInterfaceProps> = ({ coin }) => {
       addCoin({
         coinId: coin.id,
         price: coin.priceUsd,
-        count: value,
+        count: +value,
       });
-      setValue(0);
+      setValue('');
     }
     setMessageSettings({
       showMessage: true,
@@ -58,19 +59,21 @@ const BuyingInterface: FC<BuyingInterfaceProps> = ({ coin }) => {
   };
   const increaseValueHandler = () => {
     setValue((prevValue) => {
-      const multipliedValue = prevValue + INPUT_STEP;
-      return parseFloat(checkCorrectionNumber(multipliedValue).toFixed(10));
+      const multipliedValue = getRoundingNumber(+prevValue + INPUT_STEP, 10);
+      return multipliedValue.toString();
     });
   };
 
   const decreaseValueHandler = () => {
     setValue((prevValue) => {
-      const dividedValue = prevValue - INPUT_STEP;
-      return parseFloat(checkCorrectionNumber(dividedValue).toFixed(10));
+      const dividedValue = getRoundingNumber(+prevValue - INPUT_STEP, 10);
+      return dividedValue.toString();
     });
   };
 
-  const changeValueHandler = (e: ChangeEvent<HTMLInputElement>) => setValue(checkCorrectionNumber(Number(e.target.value)));
+  const changeValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue(checkCorrectionNumber(e.target.value).toString());
+  };
 
 
   const closeMessageHandler = () => {
@@ -91,9 +94,8 @@ const BuyingInterface: FC<BuyingInterfaceProps> = ({ coin }) => {
           </Button>
           <TextField
               type={'number'}
-              min={0}
               value={value}
-              onChange={changeValueHandler}
+              onInput={changeValueHandler}
               variant={'accent'}
               htmlFor={'text'}
               step={'any'}
@@ -108,7 +110,7 @@ const BuyingInterface: FC<BuyingInterfaceProps> = ({ coin }) => {
             +
           </Button>
         </div>
-        <Total count={value} price={coin.priceUsd} />
+        <Total count={+value} price={coin.priceUsd} />
         <Message type={messageSettings.type}
                  showMessage={messageSettings.showMessage}
                  onClose={closeMessageHandler}>

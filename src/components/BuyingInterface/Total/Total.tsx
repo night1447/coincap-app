@@ -13,7 +13,7 @@ const Total: FC<TotalProps> = ({ count, price }) => {
         <div className={styles.total}>
             <Typography type={'h3'}>Общая сумма</Typography>
             <Typography type={'p'} className={styles.total_price}>
-                {`${getRoundingNumber(price * count)}`}$
+                {`${getRoundingNumber(price * count, 6)}`}$
             </Typography>
         </div>
     );

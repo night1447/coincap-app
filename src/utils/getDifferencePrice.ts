@@ -9,8 +9,6 @@ export interface IDifference {
 
 const getDifferencePrice = (coins: IAdditionalCoin[], coin: ICurrency): IDifference => {
     const findingIndex = coins.findIndex(item => item.coinId === coin.id);
-    console.log(coins, coin);
-    console.log(findingIndex);
     if (findingIndex !== -1) {
         const currentCoin = coins[findingIndex];
         const count = currentCoin.count;
