@@ -1,17 +1,16 @@
 import { ICurrency } from '../../models';
 import { FC } from 'react';
-import styles from './modal.module.scss';
 import BuyingInterface from '../BuyingInterface/BuyingInterface.tsx';
-
-interface ModalInterfaceProps {
+import styles from './add.module.scss'
+interface AddInterfaceProps {
     coin: ICurrency;
 }
 
-const ModalInterface: FC<ModalInterfaceProps> = ({ coin }) => {
+const AddInterface: FC<AddInterfaceProps> = ({ coin }) => {
     return (
-        <div className={styles.modal}>
+        <div className={styles.block}>
             <BuyingInterface coin={coin} />
         </div>
     );
 };
-export default ModalInterface;
+export default AddInterface;

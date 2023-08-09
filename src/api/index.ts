@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { ICurrency, IHistory } from '../models';
+import getRoundingNumber from '../utils/getRoundingNumber.ts';
 
 type IInterval =
     | 'm1'
@@ -34,7 +35,23 @@ const createSettings = (settings?: ISettings) => {
 
 const $api = {
   baseURL: 'https://api.coincap.io/v2/assets',
-
+  createCoin(coin: ICurrency): ICurrency {
+    return {
+      ...coin,
+      marketCapUsd: getRoundingNumber(coin.marketCapUsd),
+      maxSupply: getRoundingNumber(coin.maxSupply || 0),
+      priceUsd: getRoundingNumber(coin.priceUsd),
+      supply: getRoundingNumber(coin.supply),
+      volumeUsd24Hr: getRoundingNumber(coin.volumeUsd24Hr),
+      vwap24Hr: getRoundingNumber(coin.vwap24Hr),
+      changePercent24Hr: getRoundingNumber(coin.changePercent24Hr),
+    };
+  },
+  createCoins(coins: ICurrency[]) {
+    return coins.map(item => {
+      return this.createCoin(item);
+    });
+  },
   async getHistory(id: string, interval?: IInterval): Promise<IHistory[]> {
     try {
       const response = await axios.get(
@@ -48,7 +65,7 @@ const $api = {
   async getCoin(id: string): Promise<ICurrency> {
     try {
       const response = await axios.get(`${this.baseURL}/${id}`);
-      return response.data.data;
+      return this.createCoin(response.data.data);
     } catch (e) {
       throw new Error('Error in request');
     }
@@ -58,8 +75,9 @@ const $api = {
       const response = await axios.get(
           `${this.baseURL}${createSettings(settings)}`,
       );
-      return response.data.data;
+      return this.createCoins(response.data.data);
     } catch (e) {
+      console.log(e);
       throw new Error('Error in request');
     }
   },

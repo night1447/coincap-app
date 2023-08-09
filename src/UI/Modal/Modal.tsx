@@ -7,37 +7,36 @@ import bodyScroll from '../../utils/bodyScroll.ts';
 
 interface ModalProps {
     showModal: boolean;
+    className?: string;
     onClose: () => void;
 }
 
 const Modal: FC<PropsWithChildren<ModalProps>> = ({
                                                       showModal,
                                                       onClose,
+                                                      className,
                                                       children,
                                                   }) => {
-    if (showModal){
+    if (showModal) {
         bodyScroll.lock();
+        return (<Portal containerID={'modal'}>
+                <div className={`${styles.modal} ${className || ''}`}>{children}</div>
+                <Button
+                    type={'button'}
+                    variant={'accent'}
+                    className={styles.close}
+                    onClick={() => {
+                        onClose();
+                        bodyScroll.unlock();
+                    }}
+                    isCircle={true}
+                >
+                    <SrOnly>Закрыть модальное окно</SrOnly>
+                </Button>
+                <div className={styles.backdrop}></div>
+            </Portal>
+        );
     }
-    return showModal ? (
-        <Portal containerID={'modal'}>
-            <div className={styles.modal}>{children}</div>
-            <Button
-                type={'button'}
-                variant={'accent'}
-                className={styles.close}
-                onClick={() => {
-                    onClose();
-                    bodyScroll.unlock();
-                }}
-                isCircle={true}
-            >
-                <SrOnly>Закрыть модальное окно</SrOnly>
-            </Button>
-            <div className={styles.backdrop}></div>
-        </Portal>
-    ) : (
-        <>
-        </>
-    );
+    return <></>;
 };
 export default Modal;

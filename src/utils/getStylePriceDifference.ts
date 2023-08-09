@@ -4,7 +4,7 @@ const getStylePriceDifference = (value: string) => {
     if (value[0] === '-') {
         return styles.negative;
     }
-    if (value[0] === '0') {
+    if (value[0] === '0' && +value <= 0) {
         return styles.neutral;
     }
 

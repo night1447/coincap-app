@@ -1,21 +1,18 @@
 import { FC, useState } from 'react';
 import Button from '../../UI/Button/Button.tsx';
 import styles from './profile.module.scss';
-import Modal from '../../UI/Modal/Modal.tsx';
-import BriefInterface from '../BriefCaseInterface/BriefInterface.tsx';
-import bodyScroll from '../../utils/bodyScroll.ts';
+import BriefCaseInterface from '../BriefCaseInterface/BriefCaseInterface.tsx';
 import { ProfileIcon } from '../../UI/Icons';
 
 const Profile: FC = () => {
-    const [showModal, setShowModal] = useState(false);
+    const [showBriefCase, setShowBriefCase] = useState(false);
 
-    const closeModalHandler = () => {
-        setShowModal(false);
+    const closeBriefCaseHandler = () => {
+        setShowBriefCase(false);
     };
 
-    const showModalHandler = () => {
-        setShowModal(true);
-        bodyScroll.lock();
+    const showBriefCaseHandler = () => {
+        setShowBriefCase(true);
     };
 
     return (
@@ -24,14 +21,12 @@ const Profile: FC = () => {
                 type={'button'}
                 variant={'accent'}
                 isCircle={true}
-                onClick={showModalHandler}
+                onClick={showBriefCaseHandler}
                 className={styles.btn}
             >
-            <ProfileIcon/>
+                <ProfileIcon />
             </Button>
-            <Modal showModal={showModal} onClose={closeModalHandler}>
-                <BriefInterface />
-            </Modal>
+            <BriefCaseInterface onClose={closeBriefCaseHandler} showBriefCase={showBriefCase} />
         </>
     );
 };

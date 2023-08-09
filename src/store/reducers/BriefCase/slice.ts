@@ -17,18 +17,16 @@ const Slice = createSlice({
             const findingCoinIndex = state.coins.findIndex(coin => coin.coinId === action.payload.coinId);
             if (findingCoinIndex !== -1) {
                 state.coins[findingCoinIndex].count += action.payload.count;
+                state.coins[findingCoinIndex].price = action.payload.price;
             } else {
-                state.coins.push({
-                    coinId: action.payload.coinId,
-                    count: action.payload.count,
-                });
+                state.coins.push(action.payload);
                 state.count += 1;
             }
-            state.total += getRoundingNumber(action.payload.price * action.payload.count, 4);
+            state.total = getRoundingNumber(state.total + action.payload.price * action.payload.count);
         },
         removeCoin(state, action: PayloadAction<IAdditionalCoin>) {
             state.coins = state.coins.filter(coin => coin.coinId !== action.payload.coinId);
-            state.total -= getRoundingNumber(action.payload.price * action.payload.count, 4);
+            state.total = getRoundingNumber(state.total - action.payload.price * action.payload.count);
             state.count -= 1;
         },
         changeTotal(state, action: PayloadAction<number>) {

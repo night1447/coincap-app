@@ -1,11 +1,23 @@
+@import "../../settings";
+
 .block {
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: var(--white);
-  min-width: 540px;
   padding: 32px;
   border-radius: 4px;
+  @include adpt($bmob-r) {
+    padding: 24px;
+  }
+}
+
+.modal {
+  min-width: 540px;
+  @include adpt($bmob-r) {
+    min-width: unset;
+    width: 100%;
+  }
 }
 
 .title {
@@ -19,6 +31,12 @@
   width: 100%;
   margin-bottom: 30px;
   padding-left: 12px;
+  max-height: 50dvh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  @include adpt($bmob-r) {
+    padding-left: 0;
+  }
 }
 
 .item {
@@ -27,6 +45,10 @@
   justify-content: space-between;
   border-bottom: 1px solid var(--accent);
   padding: 20px 0;
+  @include adpt($bmob-r) {
+    gap: 15px;
+    flex-wrap: wrap;
+  }
 }
 
 .subtitle {
@@ -37,6 +59,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  @include adpt($bmob-r) {
+    word-wrap: anywhere;
+    order: 3;
+    flex-basis: 100%;
+  }
 }
 
 .empty {

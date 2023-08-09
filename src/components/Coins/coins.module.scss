@@ -27,7 +27,7 @@
   td {
     padding: 20px 10px;
     @include adpt($bmob-r) {
-      padding: 5px;
+      padding: 20px 5px;
     }
   }
 }
@@ -41,6 +41,11 @@
 .mobileHidden {
   @include adpt($bmob-r) {
     display: none;
+  }
+}
+.mobileWrap{
+  @include adpt($bmob-r){
+    word-wrap: anywhere;
   }
 }
 

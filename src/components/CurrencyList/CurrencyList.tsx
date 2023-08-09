@@ -7,8 +7,9 @@ import { ICurrency } from '../../models';
 const CurrencyList: FC = () => {
   const [currencies, setCurrencies] = useState<ICurrency[]>([]);
   useEffect(() => {
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(window.navigator.userAgent);
     $api
-        .getCoins({ limit: 3, offset: 0 })
+        .getCoins({ limit: isMobile ? 1 : 3, offset: 0 })
         .then((items) => setCurrencies(items));
   }, []);
   return (

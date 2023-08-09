@@ -3,7 +3,6 @@ import Section from '../../UI/Section/Section.tsx';
 import Typography from '../../UI/Typography/Typography.tsx';
 import styles from './coin.module.scss';
 import { ICurrency } from '../../models';
-import getRoundingNumber from '../../utils/getRoundingNumber.ts';
 import getCurrency from '../../utils/getCurrency.ts';
 import Graphic from '../Graphic/Graphic.tsx';
 import $api from '../../api';
@@ -16,17 +15,17 @@ interface CoinProps {
 }
 
 const initialState: ICurrency = {
-  changePercent24Hr: '',
+  changePercent24Hr: 0,
   id: '',
-  marketCapUsd: '',
-  maxSupply: '',
+  marketCapUsd: 0,
+  maxSupply: 0,
   name: '',
-  priceUsd: '',
+  priceUsd: 0,
   rank: '',
-  supply: '',
+  supply: 0,
   symbol: '',
-  volumeUsd24Hr: '',
-  vwap24Hr: '',
+  volumeUsd24Hr: 0,
+  vwap24Hr: 0,
 };
 const CoinInterface: FC<CoinProps> = ({ id }) => {
   const [coin, setCoin] = useState<ICurrency>(initialState);
@@ -59,14 +58,14 @@ const CoinInterface: FC<CoinProps> = ({ id }) => {
                 {coin.name} ({coin.symbol})
               </Typography>
               <Typography type={'h2'} className={styles.price}>
-                {getRoundingNumber(+coin.priceUsd)}
+                {coin.priceUsd}
                 {getCurrency()}
                 <span
                     className={`${styles.price_value} ${
-                        getStylePriceDifference(coin.changePercent24Hr)
+                        getStylePriceDifference(coin.changePercent24Hr.toString())
                     }`}
                 >
-                {getRoundingNumber(+coin.changePercent24Hr)}%
+                {coin.changePercent24Hr}%
               </span>
               </Typography>
             </div>
@@ -75,21 +74,21 @@ const CoinInterface: FC<CoinProps> = ({ id }) => {
             <li className={styles.item}>
               <Typography type={'p'}>Market cap</Typography>
               <Typography type={'h3'} className={styles.value}>
-                {getRoundingNumber(+coin.marketCapUsd)}
+                {coin.marketCapUsd}
                 {getCurrency()}
               </Typography>
             </li>
             <li className={styles.item}>
               <Typography type={'p'}>Volume (24Hr)</Typography>
               <Typography type={'h3'} className={styles.value}>
-                {getRoundingNumber(+coin.volumeUsd24Hr)}
+                {coin.volumeUsd24Hr}
                 {getCurrency()}
               </Typography>
             </li>
             <li className={styles.item}>
               <Typography type={'p'}>Supply</Typography>
               <Typography type={'h3'} className={styles.value}>
-                {getRoundingNumber(+coin.supply)}
+                {coin.supply}
                 {getCurrency()}
               </Typography>
             </li>
