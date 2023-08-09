@@ -25,7 +25,7 @@ const Coins: FC<CoinsProps> = ({ offset, step, onChange }) => {
         <tbody>
         <Titles />
         {coins.map((item) => (
-            <Coin key={Math.random()} onChange={onChange} coin={item} />
+            <Coin key={item.id} onChange={onChange} coin={item} />
         ))}
         </tbody>
       </table>

@@ -1,21 +1,19 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useContext, useState } from 'react';
 import { ICurrency } from '../../../models';
 import Typography from '../../UI/Typography/Typography.tsx';
 import styles from './currency.module.scss';
 import getCurrency from '../../../utils/getCurrency.ts';
 import getDifferencePrice, { IDifference } from '../../../utils/getDifferencePrice.ts';
-import useTypedSelector from '../../../hooks/useTypedSelector.ts';
+import context from '../../../context';
 
 interface CurrencyItemProps {
     currency: ICurrency;
 }
 
 const CurrencyItem: FC<CurrencyItemProps> = ({ currency }) => {
-    const [difference, setDifference] = useState<IDifference>();
-    const briefCase = useTypedSelector(state => state.briefCase);
-    useEffect(() => {
-        setDifference(getDifferencePrice(briefCase.coins, currency));
-    }, []);
+    const briefCase = useContext(context);
+    const [difference, setDifference] = useState<IDifference>(getDifferencePrice(briefCase.coins, currency));
+    console.log(briefCase);
     return (
         <li className={styles.item}>
             <Typography type={'h3'} className={styles.name}>

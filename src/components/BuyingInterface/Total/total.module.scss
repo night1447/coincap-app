@@ -1,4 +1,8 @@
 .total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
   &_price {
     font-weight: 700;
     color: var(--accent);

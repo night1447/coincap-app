@@ -1,10 +1,10 @@
-import { FC } from 'react';
+import { FC, useContext } from 'react';
 import Typography from '../UI/Typography/Typography.tsx';
-import useTypedSelector from '../../hooks/useTypedSelector.ts';
 import styles from './briefcase.module.scss';
 import BriefCaseCoins from './BriefCaseCoins/BriefCaseCoins.tsx';
 import getCurrency from '../../utils/getCurrency.ts';
 import Modal from '../UI/Modal/Modal.tsx';
+import context from '../../context';
 
 interface BriefCaseInterfaceProps {
     showBriefCase: boolean;
@@ -12,7 +12,7 @@ interface BriefCaseInterfaceProps {
 }
 
 const BriefCaseInterface: FC<BriefCaseInterfaceProps> = ({ showBriefCase, onClose }) => {
-    const briefCase = useTypedSelector(state => state.briefCase);
+    const briefCase = useContext(context);
     return (
         <Modal showModal={showBriefCase} onClose={onClose} className={styles.modal}>
             <div className={styles.block}>

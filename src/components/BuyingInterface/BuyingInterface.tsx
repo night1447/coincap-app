@@ -1,13 +1,12 @@
-import React, { ChangeEvent, FC, useState } from 'react';
+import React, { ChangeEvent, FC, useContext, useState } from 'react';
 import { ICurrency } from '../../models';
 import Button from '../UI/Button/Button.tsx';
 import TextField from '../UI/TextField/TextField.tsx';
 import styles from './buying.module.scss';
 import Message, { IMessageType } from '../UI/Message/Message.tsx';
-import { useDispatch } from 'react-redux';
-import { addCoinAction } from '../../store/reducers/BriefCase/actions.ts';
 import Total from './Total/Total.tsx';
 import ProductInformation from './ProductInformation/ProductInformation.tsx';
+import context from '../../context';
 
 interface BuyingInterfaceProps {
   coin: ICurrency;
@@ -28,7 +27,7 @@ const INPUT_STEP = 0.01;
 const checkCorrectionNumber = (value: number) => (value > 0 ? value : 0);
 const BuyingInterface: FC<BuyingInterfaceProps> = ({ coin }) => {
   const [value, setValue] = useState(0);
-  const dispatch = useDispatch();
+  const { addCoin } = useContext(context);
   const [messageSettings, setMessageSettings] =
       useState<IMessageSettings>(initialState);
   const submitFormHandler = (event: React.FormEvent) => {
@@ -41,11 +40,11 @@ const BuyingInterface: FC<BuyingInterfaceProps> = ({ coin }) => {
     } else {
       message = `Отлично, ${coin.symbol} добавлена в ваш кошелек в размере ${value}`;
       type = 'success';
-      dispatch(addCoinAction({
+      addCoin({
         coinId: coin.id,
         price: +coin.priceUsd,
         count: value,
-      }));
+      });
       setValue(0);
     }
     setMessageSettings({

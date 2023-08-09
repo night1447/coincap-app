@@ -1,14 +1,14 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useContext, useEffect, useState } from 'react';
 import BriefCaseCoin from '../BriefCaseCoin/BriefCaseCoin.tsx';
 import { IWideCoin } from '../../../models';
 import styles from '../briefCase.module.scss';
-import useTypedSelector from '../../../hooks/useTypedSelector.ts';
 import $api from '../../../api';
 import createCoinIds from '../../../utils/createCoinIds.ts';
+import context from '../../../context';
 
 
 const BriefCaseCoins: FC = () => {
-    const briefCase = useTypedSelector(state => state.briefCase);
+    const briefCase = useContext(context);
     const [coins, setCoins] = useState<IWideCoin[]>([]);
     useEffect(() => {
         const currentIds = createCoinIds(briefCase.coins);
