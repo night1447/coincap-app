@@ -20,7 +20,6 @@ const ContextProvider: FC<PropsWithChildren> = ({ children }) => {
             const newState: IBriefCase = {
                 ...state,
             };
-
             newState.total = state.total - payload.price * payload.count;
             if (Math.abs(newState.total) < epsilon) {
                 newState.total = 0;
@@ -61,7 +60,7 @@ const ContextProvider: FC<PropsWithChildren> = ({ children }) => {
                 changeTotalHandler(currentSum);
             });
         }
-    }, []);
+    }, [briefCase.coins]);
 
     useEffect(() => {
         addLocalStorage('briefCase', JSON.stringify(briefCase));
