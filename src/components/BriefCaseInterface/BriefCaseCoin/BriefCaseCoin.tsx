@@ -1,7 +1,7 @@
 import { FC, useContext } from 'react';
 import Typography from '../../UI/Typography/Typography.tsx';
 import { IWideCoin } from '../../../models';
-import styles from '../briefCase.module.scss';
+import styles from './briefCase.module.scss';
 import Button from '../../UI/Button/Button.tsx';
 import { TrashIcon } from '../../UI/Icons';
 import context from '../../../context';
