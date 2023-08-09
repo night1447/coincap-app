@@ -1,10 +1,11 @@
 import { FC, PropsWithChildren, useEffect, useState } from 'react';
-import { IAdditionalCoin, IBriefCase } from '../../store/reducers/BriefCase/types.ts';
+
 import Context from '../../context';
 import getRoundingNumber from '../../utils/getRoundingNumber.ts';
 import { addLocalStorage, getLocalStorage } from '../../utils/localStorage.ts';
 import $api from '../../api';
 import createCoinIds from '../../utils/createCoinIds.ts';
+import { IAdditionalCoin, IBriefCase } from '../../models';
 
 const init: IBriefCase = {
     coins: [],

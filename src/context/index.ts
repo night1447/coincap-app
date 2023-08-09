@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { IAdditionalCoin, IBriefCase } from '../store/reducers/BriefCase/types.ts';
+import { IAdditionalCoin, IBriefCase } from '../models';
 
 interface IContext extends IBriefCase {
     removeCoin: (payload: IAdditionalCoin) => void,

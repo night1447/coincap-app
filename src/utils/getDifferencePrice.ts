@@ -1,6 +1,5 @@
 import getStylePriceDifference from './getStylePriceDifference.ts';
-import { ICurrency } from '../models';
-import { IAdditionalCoin } from '../store/reducers/BriefCase/types.ts';
+import { IAdditionalCoin, ICurrency } from '../models';
 
 export interface IDifference {
     percent: number;

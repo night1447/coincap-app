@@ -17,9 +17,19 @@ export interface IHistory {
   time: number;
 }
 
+export interface IBriefCase {
+  coins: IAdditionalCoin[];
+  total: number;
+  count: number;
+}
+
 export interface ICoin {
   coinId: string;
   count: number;
+}
+
+export interface IAdditionalCoin extends ICoin {
+  price: number;
 }
 
 export interface IWideCoin {
