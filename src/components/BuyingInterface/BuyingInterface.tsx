@@ -1,14 +1,12 @@
-import React, { ChangeEvent, FC, useState } from 'react';
+import React, { ChangeEvent, FC, useContext, useState } from 'react';
 import { ICurrency } from '../../models';
-import Button from '../../UI/Button/Button.tsx';
-import TextField from '../../UI/TextField/TextField.tsx';
+import Button from '../UI/Button/Button.tsx';
+import TextField from '../UI/TextField/TextField.tsx';
 import styles from './buying.module.scss';
-import Typography from '../../UI/Typography/Typography.tsx';
-import getCurrency from '../../utils/getCurrency.ts';
-import getRoundingNumber from '../../utils/getRoundingNumber.ts';
-import Message, { IMessageType } from '../../UI/Message/Message.tsx';
-import { useDispatch } from 'react-redux';
-import { addCoinAction } from '../../store/reducers/BriefCase/actions.ts';
+import Message, { IMessageType } from '../UI/Message/Message.tsx';
+import Total from './Total/Total.tsx';
+import ProductInformation from './ProductInformation/ProductInformation.tsx';
+import context from '../../context';
 
 interface BuyingInterfaceProps {
   coin: ICurrency;
@@ -25,28 +23,28 @@ const initialState: IMessageSettings = {
   showMessage: false,
   type: '',
 };
-const checkZero = (value: number) => (value > 0 ? value : 0);
 const INPUT_STEP = 0.01;
+const checkCorrectionNumber = (value: number) => (value > 0 ? value : 0);
 const BuyingInterface: FC<BuyingInterfaceProps> = ({ coin }) => {
   const [value, setValue] = useState(0);
-  const dispatch = useDispatch();
+  const { addCoin } = useContext(context);
   const [messageSettings, setMessageSettings] =
       useState<IMessageSettings>(initialState);
   const submitFormHandler = (event: React.FormEvent) => {
     event.preventDefault();
-    let message = '';
-    let type: IMessageType = '';
+    let message: string;
+    let type: IMessageType;
     if (value === 0) {
       message = `Увы нечего добавлять, вы не увеличили количество валюты`;
       type = 'error';
     } else {
       message = `Отлично, ${coin.symbol} добавлена в ваш кошелек в размере ${value}`;
       type = 'success';
-      dispatch(addCoinAction({
+      addCoin({
         coinId: coin.id,
         price: +coin.priceUsd,
         count: value,
-      }));
+      });
       setValue(0);
     }
     setMessageSettings({
@@ -54,48 +52,34 @@ const BuyingInterface: FC<BuyingInterfaceProps> = ({ coin }) => {
       type,
       message,
     });
+    setTimeout(() => {
+      setMessageSettings(initialState);
+    }, 3000);
   };
   const increaseValueHandler = () => {
     setValue((prevValue) => {
       const multipliedValue = prevValue + INPUT_STEP;
-      return parseFloat(checkZero(multipliedValue).toFixed(10));
+      return parseFloat(checkCorrectionNumber(multipliedValue).toFixed(10));
     });
   };
 
   const decreaseValueHandler = () => {
     setValue((prevValue) => {
       const dividedValue = prevValue - INPUT_STEP;
-      return parseFloat(checkZero(dividedValue).toFixed(10));
+      return parseFloat(checkCorrectionNumber(dividedValue).toFixed(10));
     });
   };
 
-  const changeValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value;
-    setValue(checkZero(Number(newValue)));
-  };
+  const changeValueHandler = (e: ChangeEvent<HTMLInputElement>) => setValue(checkCorrectionNumber(Number(e.target.value)));
+
 
   const closeMessageHandler = () => {
-    setMessageSettings((prevState) => ({
-      ...prevState,
-      showMessage: false,
-    }));
+    setMessageSettings(initialState);
   };
 
   return (
       <form onSubmit={submitFormHandler} className={styles.form}>
-        <Typography type={'h2'} className={styles.title}>
-          Добавление в кошелек
-        </Typography>
-        <div className={styles.inner}>
-          <Typography type={'h3'}>
-            {coin.name} - {coin.symbol}
-          </Typography>
-          <Typography type={'p'} className={styles.price}>
-            {getRoundingNumber(+coin.priceUsd)}
-            {getCurrency()}
-          </Typography>
-        </div>
-
+        <ProductInformation coin={coin} />
         <div className={styles.wrapper}>
           <Button
               variant={'accent'}
@@ -124,19 +108,12 @@ const BuyingInterface: FC<BuyingInterfaceProps> = ({ coin }) => {
             +
           </Button>
         </div>
-        <div className={styles.total}>
-          <Typography type={'h3'}>Общая сумма</Typography>
-          <Typography type={'p'} className={styles.total_price}>
-            {`${getRoundingNumber(value * +coin.priceUsd)}`}$
-          </Typography>
-        </div>
-        {messageSettings?.showMessage ? (
-            <Message type={messageSettings.type} onClose={closeMessageHandler}>
-              {messageSettings.message}
-            </Message>
-        ) : (
-            <></>
-        )}
+        <Total count={value} price={coin.priceUsd} />
+        <Message type={messageSettings.type}
+                 showMessage={messageSettings.showMessage}
+                 onClose={closeMessageHandler}>
+          {messageSettings.message}
+        </Message>
         <Button variant={'success'} type={'submit'}>
           Подтвердить
         </Button>

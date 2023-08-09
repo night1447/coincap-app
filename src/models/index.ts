@@ -3,13 +3,13 @@ export interface ICurrency {
   rank: string;
   symbol: string;
   name: string;
-  priceUsd: string;
-  supply: string;
-  maxSupply: string | null;
-  marketCapUsd: string;
-  volumeUsd24Hr: string;
-  changePercent24Hr: string;
-  vwap24Hr: string;
+  priceUsd: number;
+  supply: number;
+  maxSupply: number | null;
+  marketCapUsd: number;
+  volumeUsd24Hr: number;
+  changePercent24Hr: number;
+  vwap24Hr: number;
 }
 
 export interface IHistory {

@@ -1,12 +1,11 @@
 import Coins from '../Coins/Coins.tsx';
-import Button from '../../UI/Button/Button.tsx';
-import Section from '../../UI/Section/Section.tsx';
+import Button from '../UI/Button/Button.tsx';
+import Section from '../UI/Section/Section.tsx';
 import styles from './main.module.scss';
 import { useState } from 'react';
 import { ICurrency } from '../../models';
-import Modal from '../../UI/Modal/Modal.tsx';
-import ModalInterface from '../ModalInterface/ModalInterface.tsx';
-import bodyScroll from '../../utils/bodyScroll.ts';
+import Modal from '../UI/Modal/Modal.tsx';
+import AddInterface from '../AddInterface/AddInterface.tsx';
 
 const OFFSET_STEP = 30;
 
@@ -18,17 +17,17 @@ interface IModalSettings {
 const initialState: IModalSettings = {
   showModal: false,
   currentCoin: {
-    changePercent24Hr: '',
+    changePercent24Hr: 0,
     id: '',
-    marketCapUsd: '',
-    maxSupply: '',
+    marketCapUsd: 0,
+    maxSupply: 0,
     name: '',
-    priceUsd: '',
+    priceUsd: 0,
     rank: '',
-    supply: '',
+    supply: 0,
     symbol: '',
-    volumeUsd24Hr: '',
-    vwap24Hr: '',
+    volumeUsd24Hr: 0,
+    vwap24Hr: 0,
   },
 };
 const MainInterface = () => {
@@ -37,7 +36,6 @@ const MainInterface = () => {
       useState<IModalSettings>(initialState);
   const changeModalSettingsHandler = (coin: ICurrency) => {
     setModalSettings({ showModal: true, currentCoin: coin });
-    bodyScroll.lock();
   };
   const changeLimitHandler = () => {
     setOffset((prevState) => prevState + OFFSET_STEP);
@@ -58,8 +56,8 @@ const MainInterface = () => {
           <Button type={'button'} variant={'accent'} onClick={changeLimitHandler}>
             Показать больше
           </Button>
-          <Modal showModal={modalSettings.showModal} onClose={closeModalHandler}>
-            <ModalInterface coin={modalSettings.currentCoin} />
+          <Modal showModal={modalSettings.showModal} className={styles.modal} onClose={closeModalHandler}>
+            <AddInterface coin={modalSettings.currentCoin} />
           </Modal>
         </div>
       </Section>

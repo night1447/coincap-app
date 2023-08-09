@@ -3,7 +3,7 @@ import styles from './button.module.scss';
 
 interface ButtonProps {
   type: 'button' | 'submit' | 'reset';
-  variant: 'default' | 'accent' | 'error' | 'success';
+  variant: 'default' | 'accent' | 'error' | 'success' | 'close';
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   className?: string;
   isCircle?: boolean;

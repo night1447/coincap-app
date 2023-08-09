@@ -2,9 +2,9 @@ import React, { FC } from 'react';
 import { ICurrency } from '../../../models';
 import styles from '../coins.module.scss';
 import { useNavigate } from 'react-router';
-import Button from '../../../UI/Button/Button.tsx';
-import getRoundingNumber from '../../../utils/getRoundingNumber.ts';
+import Button from '../../UI/Button/Button.tsx';
 import getCurrency from '../../../utils/getCurrency.ts';
+import getStylePriceDifference from '../../../utils/getStylePriceDifference.ts';
 
 interface CoinProps {
     coin: ICurrency;
@@ -25,22 +25,23 @@ const Coin: FC<CoinProps> = ({ coin, onChange }) => {
   return (
     <tr className={styles.row} onClick={openCoinHandler}>
         <td className={`${styles.mobileHidden}`}>{coin.rank}</td>
-        <td>
+        <td className={styles.mobileWrap}>
             {coin.name}-{coin.symbol}
         </td>
-        <td>{getRoundingNumber(+coin.priceUsd)}{getCurrency()}</td>
+        <td>{coin.priceUsd}{getCurrency()}</td>
         <td className={`${styles.mobileHidden}`}>
-            {getRoundingNumber(+coin.marketCapUsd)}{getCurrency()}
+            {coin.marketCapUsd}{getCurrency()}
         </td>
         <td className={styles.tabletHidden}>
-            {getRoundingNumber(+coin.vwap24Hr)}
+            {coin.vwap24Hr}
         </td>
-        <td className={styles.tabletHidden}>{getRoundingNumber(+coin.supply)}</td>
+        <td className={styles.tabletHidden}>{coin.supply}{getCurrency()}</td>
         <td className={styles.tabletHidden}>
-            {getRoundingNumber(+coin.volumeUsd24Hr)}{getCurrency()}
+            {coin.volumeUsd24Hr}{getCurrency()}
         </td>
-        <td className={styles.relative}>
-            {getRoundingNumber(+coin.changePercent24Hr)}
+        <td className={`${styles.relative}`}>
+            <b
+                className={getStylePriceDifference(coin.changePercent24Hr.toString())}>{coin.changePercent24Hr}%</b>
             <Button
                 type={'button'}
                 variant={'success'}
@@ -48,9 +49,9 @@ const Coin: FC<CoinProps> = ({ coin, onChange }) => {
                 onClick={openModalHandler}
                 className={styles.add}
             >
-          +
-        </Button>
-      </td>
+                +
+            </Button>
+        </td>
     </tr>
   );
 };

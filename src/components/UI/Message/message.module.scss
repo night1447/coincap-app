@@ -34,3 +34,9 @@
   color: var(--error);
   border-color: var(--error);
 }
+
+.close {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+}

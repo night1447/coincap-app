@@ -1,7 +1,7 @@
 import { ICoin } from '../../../models';
 
 export interface IBriefCase {
-    coins: ICoin[];
+    coins: IAdditionalCoin[];
     total: number;
     count: number;
 }

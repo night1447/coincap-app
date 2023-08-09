@@ -1,24 +1,24 @@
-import { FC } from 'react';
-import Typography from '../../../UI/Typography/Typography.tsx';
+import { FC, useContext } from 'react';
+import Typography from '../../UI/Typography/Typography.tsx';
 import { IWideCoin } from '../../../models';
 import styles from '../briefCase.module.scss';
-import Button from '../../../UI/Button/Button.tsx';
-import { TrashIcon } from '../../../UI/Icons';
-import { useDispatch } from 'react-redux';
-import { removeCoinAction } from '../../../store/reducers/BriefCase/actions.ts';
+import Button from '../../UI/Button/Button.tsx';
+import { TrashIcon } from '../../UI/Icons';
+import context from '../../../context';
 
 interface BriefCaseCoinProps {
     coin: IWideCoin;
 }
 
 const BriefCaseCoin: FC<BriefCaseCoinProps> = ({ coin }) => {
-    const dispatch = useDispatch();
+    const { removeCoin } = useContext(context);
+
     const deleteCoinHandler = () => {
-        dispatch(removeCoinAction({
+        removeCoin({
             coinId: coin.coin.id,
             count: coin.count,
             price: +coin.coin.priceUsd,
-        }));
+        });
     };
 
     return (

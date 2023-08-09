@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import styles from '../CoinInterface/coin.module.scss';
+import styles from './graphic.module.scss';
 import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import getRoundingNumber from '../../utils/getRoundingNumber.ts';
 import { IHistory } from '../../models';
@@ -13,6 +13,7 @@ interface IGraphicElement {
 
 interface GraphicProps {
   id: string;
+  className?: string;
 }
 
 const addLeadingZero = (value: number) => (value < 10 ? `0${value}` : value);
@@ -33,7 +34,7 @@ const createGraphicData = (data: IHistory[]) => {
   return result;
 };
 
-const Graphic: FC<GraphicProps> = ({ id }) => {
+const Graphic: FC<GraphicProps> = ({ id, className }) => {
   const [graphicData, setGraphicData] = useState<IGraphicElement[]>([]);
   useEffect(() => {
     $api
@@ -41,7 +42,7 @@ const Graphic: FC<GraphicProps> = ({ id }) => {
         .then((history) => setGraphicData(createGraphicData(history)));
   }, []);
   return (
-      <div className={styles.graphic}>
+      <div className={`${styles.graphic} ${className || ''}`}>
         <ResponsiveContainer width='100%' height='100%'>
           <AreaChart data={graphicData}>
             <CartesianGrid strokeDasharray='3 3' />

@@ -27,7 +27,7 @@
   td {
     padding: 20px 10px;
     @include adpt($bmob-r) {
-      padding: 5px;
+      padding: 20px 5px;
     }
   }
 }
@@ -43,8 +43,13 @@
     display: none;
   }
 }
+.mobileWrap{
+  @include adpt($bmob-r){
+    word-wrap: anywhere;
+  }
+}
 
-.relative {
+.percent {
   position: relative;
 }
 
