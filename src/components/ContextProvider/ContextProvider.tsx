@@ -3,6 +3,8 @@ import { IAdditionalCoin, IBriefCase } from '../../store/reducers/BriefCase/type
 import Context from '../../context';
 import getRoundingNumber from '../../utils/getRoundingNumber.ts';
 import { addLocalStorage, getLocalStorage } from '../../utils/localStorage.ts';
+import $api from '../../api';
+import createCoinIds from '../../utils/createCoinIds.ts';
 
 const init: IBriefCase = {
     coins: [],
@@ -10,8 +12,7 @@ const init: IBriefCase = {
     total: 0,
 };
 
-const initialState: IBriefCase = JSON.parse(getLocalStorage('briefCase') || '') || init;
-
+const initialState: IBriefCase = getLocalStorage('briefCase') ? JSON.parse(getLocalStorage('briefCase') as string) : init;
 const ContextProvider: FC<PropsWithChildren> = ({ children }) => {
     const [briefCase, setBriefCase] = useState<IBriefCase>(initialState);
     const removeCoinHandler = (payload: IAdditionalCoin) => {
@@ -40,7 +41,6 @@ const ContextProvider: FC<PropsWithChildren> = ({ children }) => {
                 newState.count += 1;
             }
             newState.total = getRoundingNumber(state.total + payload.price * payload.count);
-            console.log(newState);
             return newState;
         });
     };
@@ -51,8 +51,18 @@ const ContextProvider: FC<PropsWithChildren> = ({ children }) => {
         }));
     };
     useEffect(() => {
+        if (briefCase.coins.length) {
+            $api.getCoins({ ids: createCoinIds(briefCase.coins) }).then(items => {
+                const currentSum = items.reduce((currentSum, item, index) => currentSum + +item.priceUsd * briefCase.coins[index].count, 0);
+                changeTotalHandler(currentSum);
+            });
+        }
+    }, []);
+
+    useEffect(() => {
         addLocalStorage('briefCase', JSON.stringify(briefCase));
     }, [briefCase]);
+
     return (
         <Context.Provider value={{
             ...briefCase,

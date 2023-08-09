@@ -12,8 +12,7 @@ interface CurrencyItemProps {
 
 const CurrencyItem: FC<CurrencyItemProps> = ({ currency }) => {
     const briefCase = useContext(context);
-    const [difference, setDifference] = useState<IDifference>(getDifferencePrice(briefCase.coins, currency));
-    console.log(briefCase);
+    const [difference] = useState<IDifference>(getDifferencePrice(briefCase.coins, currency));
     return (
         <li className={styles.item}>
             <Typography type={'h3'} className={styles.name}>

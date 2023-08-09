@@ -49,8 +49,11 @@
 
 
 .price {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+
   &_value {
-    margin-left: 12px;
   }
 }
 

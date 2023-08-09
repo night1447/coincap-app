@@ -15,7 +15,7 @@ const Head: FC<HeadProps> = ({ coin }) => {
             <div className={styles.inner}>
                 <div className={styles.rank}>
                     <span className={styles.rank_bold}>{coin?.rank}</span>
-                    <span>Rank</span>
+                    <span>Рейтинг</span>
                 </div>
                 <div>
                     <Typography type={'h1'} className={styles.name}>
@@ -36,21 +36,21 @@ const Head: FC<HeadProps> = ({ coin }) => {
             </div>
             <ul className={styles.info}>
                 <li className={styles.item}>
-                    <Typography type={'p'}>Market cap</Typography>
+                    <Typography type={'p'}>Рыночная капитализация</Typography>
                     <Typography type={'h3'} className={styles.value}>
                         {coin.marketCapUsd}
                         {getCurrency()}
                     </Typography>
                 </li>
                 <li className={styles.item}>
-                    <Typography type={'p'}>Volume (24Hr)</Typography>
+                    <Typography type={'p'}>Объем (24Hr)</Typography>
                     <Typography type={'h3'} className={styles.value}>
                         {coin.volumeUsd24Hr}
                         {getCurrency()}
                     </Typography>
                 </li>
                 <li className={styles.item}>
-                    <Typography type={'p'}>Supply</Typography>
+                    <Typography type={'p'}>Снабжение</Typography>
                     <Typography type={'h3'} className={styles.value}>
                         {coin.supply}
                         {getCurrency()}
