@@ -39,7 +39,7 @@ const Coin: FC<CoinProps> = ({ coin, onChange }) => {
         <td className={styles.tabletHidden}>
             {coin.volumeUsd24Hr}{getCurrency()}
         </td>
-        <td className={`${styles.relative}`}>
+        <td className={`${styles.percent}`}>
             <b
                 className={getStylePriceDifference(coin.changePercent24Hr.toString())}>{coin.changePercent24Hr}%</b>
             <Button
