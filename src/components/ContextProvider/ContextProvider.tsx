@@ -1,7 +1,6 @@
 import { FC, PropsWithChildren, useEffect, useState } from 'react';
 
 import Context from '../../context';
-import getRoundingNumber from '../../utils/getRoundingNumber.ts';
 import { addLocalStorage, getLocalStorage } from '../../utils/localStorage.ts';
 import $api from '../../api';
 import createCoinIds from '../../utils/createCoinIds.ts';
@@ -12,7 +11,7 @@ const init: IBriefCase = {
     count: 0,
     total: 0,
 };
-
+const epsilon = 1e-100000000;
 const initialState: IBriefCase = getLocalStorage('briefCase') ? JSON.parse(getLocalStorage('briefCase') as string) : init;
 const ContextProvider: FC<PropsWithChildren> = ({ children }) => {
     const [briefCase, setBriefCase] = useState<IBriefCase>(initialState);
@@ -21,8 +20,12 @@ const ContextProvider: FC<PropsWithChildren> = ({ children }) => {
             const newState: IBriefCase = {
                 ...state,
             };
-            newState.coins = state.coins.filter(coin => coin.coinId !== payload.coinId);
-            newState.total = getRoundingNumber(state.total - payload.price * payload.count);
+
+            newState.total = state.total - payload.price * payload.count;
+            if (Math.abs(newState.total) < epsilon) {
+                newState.total = 0;
+            }
+            newState.coins = state.coins.filter(item => item.coinId !== payload.coinId);
             newState.count -= 1;
             return newState;
         });
@@ -41,14 +44,14 @@ const ContextProvider: FC<PropsWithChildren> = ({ children }) => {
                 newState.coins.push(payload);
                 newState.count += 1;
             }
-            newState.total = getRoundingNumber(state.total + payload.price * payload.count);
+            newState.total = state.total + payload.price * payload.count;
             return newState;
         });
     };
     const changeTotalHandler = (payload: number) => {
         setBriefCase((prevState) => ({
             ...prevState,
-            total: getRoundingNumber(payload),
+            total: payload,
         }));
     };
     useEffect(() => {

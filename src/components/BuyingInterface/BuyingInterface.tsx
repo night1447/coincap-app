@@ -42,7 +42,7 @@ const BuyingInterface: FC<BuyingInterfaceProps> = ({ coin }) => {
       type = 'success';
       addCoin({
         coinId: coin.id,
-        price: +coin.priceUsd,
+        price: coin.priceUsd,
         count: value,
       });
       setValue(0);

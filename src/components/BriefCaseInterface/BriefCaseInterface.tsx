@@ -5,6 +5,7 @@ import BriefCaseCoins from './BriefCaseCoins/BriefCaseCoins.tsx';
 import getCurrency from '../../utils/getCurrency.ts';
 import Modal from '../UI/Modal/Modal.tsx';
 import context from '../../context';
+import getRoundingNumber from '../../utils/getRoundingNumber.ts';
 
 interface BriefCaseInterfaceProps {
     showBriefCase: boolean;
@@ -22,7 +23,7 @@ const BriefCaseInterface: FC<BriefCaseInterfaceProps> = ({ showBriefCase, onClos
                         <Typography type={'p'} className={styles.total}>
                         <span>Стоимость
                         портфеля</span>
-                            <b>{briefCase.total}{getCurrency()}</b>
+                            <b>{getRoundingNumber(briefCase.total)}{getCurrency()}</b>
                         </Typography>
                     </>
                     :

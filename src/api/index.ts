@@ -77,7 +77,6 @@ const $api = {
       );
       return this.createCoins(response.data.data);
     } catch (e) {
-      console.log(e);
       throw new Error('Error in request');
     }
   },
