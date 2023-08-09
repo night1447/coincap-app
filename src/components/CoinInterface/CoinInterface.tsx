@@ -9,6 +9,7 @@ import $api from '../../api';
 import Button from '../../UI/Button/Button.tsx';
 import { useNavigate } from 'react-router';
 import getStylePriceDifference from '../../utils/getStylePriceDifference.ts';
+import BuyingInterface from '../BuyingInterface/BuyingInterface.tsx';
 
 interface CoinProps {
   id: string;
@@ -94,7 +95,8 @@ const CoinInterface: FC<CoinProps> = ({ id }) => {
             </li>
           </ul>
         </div>
-        <Graphic id={id} />
+        <Graphic id={id} className={styles.graphic}/>
+        <BuyingInterface coin={coin}/>
       </Section>
   );
 };
