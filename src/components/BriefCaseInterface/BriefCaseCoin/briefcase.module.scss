@@ -31,16 +31,6 @@
   font-size: 18px;
 }
 
-.total {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-
-  & b {
-    color: var(--success);
-  }
-}
-
 .delete {
   display: flex;
   justify-content: center;
