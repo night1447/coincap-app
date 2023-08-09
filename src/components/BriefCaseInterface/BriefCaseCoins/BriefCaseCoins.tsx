@@ -1,7 +1,7 @@
 import { FC, useContext, useEffect, useState } from 'react';
 import BriefCaseCoin from '../BriefCaseCoin/BriefCaseCoin.tsx';
 import { IWideCoin } from '../../../models';
-import styles from './briefCase.module.scss';
+import styles from './list.module.scss';
 import $api from '../../../api';
 import createCoinIds from '../../../utils/createCoinIds.ts';
 import context from '../../../context';
