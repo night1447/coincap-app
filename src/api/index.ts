@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { ICurrency, IHistory } from '../models';
 import getRoundingNumber from '../utils/getRoundingNumber.ts';
+import { checkPrice } from '../utils/checkPrice.ts';
 
 type IInterval =
     | 'm1'
@@ -20,15 +21,7 @@ interface ISettings {
   step?: number;
   ids?: string[];
 }
-const checkPrice = (price: number) => {
-  const precisionNumber = +(+price).toPrecision(4);
-  const roundingNumber = getRoundingNumber(+price);
-  if (precisionNumber > roundingNumber) {
-    return precisionNumber;
-  }
-  return roundingNumber;
 
-};
 
 const BASE_LIMIT = 60;
 const BASE_OFFSET = 0;
