@@ -41,7 +41,7 @@ const $api = {
       ...coin,
       marketCapUsd: getRoundingNumber(coin.marketCapUsd),
       maxSupply: getRoundingNumber(coin.maxSupply || 0),
-      priceUsd: +(+coin.priceUsd).toPrecision(4),
+      priceUsd: +(+coin.priceUsd).toPrecision(4) ,
       supply: getRoundingNumber(coin.supply),
       volumeUsd24Hr: getRoundingNumber(coin.volumeUsd24Hr),
       vwap24Hr: getRoundingNumber(coin.vwap24Hr),
