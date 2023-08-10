@@ -20,6 +20,15 @@ interface ISettings {
   step?: number;
   ids?: string[];
 }
+const checkPrice = (price: number) => {
+  const precisionNumber = +(+price).toPrecision(4);
+  const roundingNumber = getRoundingNumber(+price);
+  if (precisionNumber > roundingNumber) {
+    return precisionNumber;
+  }
+  return roundingNumber;
+
+};
 
 const BASE_LIMIT = 60;
 const BASE_OFFSET = 0;
@@ -41,7 +50,7 @@ const $api = {
       ...coin,
       marketCapUsd: getRoundingNumber(coin.marketCapUsd),
       maxSupply: getRoundingNumber(coin.maxSupply || 0),
-      priceUsd: +(+coin.priceUsd).toPrecision(4) ,
+      priceUsd: checkPrice(coin.priceUsd),
       supply: getRoundingNumber(coin.supply),
       volumeUsd24Hr: getRoundingNumber(coin.volumeUsd24Hr),
       vwap24Hr: getRoundingNumber(coin.vwap24Hr),
