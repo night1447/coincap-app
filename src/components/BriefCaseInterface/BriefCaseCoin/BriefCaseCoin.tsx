@@ -27,7 +27,7 @@ const BriefCaseCoin: FC<BriefCaseCoinProps> = ({ coin }) => {
                 {coin.coin.name}
             </Typography>
             <Typography type={'h3'} className={styles.count}>
-                {coin.count}{coin.coin.symbol}
+                {coin.count.toString()}{coin.coin.symbol}
             </Typography>
             <Button type={'button'}
                     onClick={deleteCoinHandler}

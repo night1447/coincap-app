@@ -11,7 +11,7 @@ const init: IBriefCase = {
     count: 0,
     total: 0,
 };
-const epsilon = 1e-1000000;
+const epsilon = 1e-100;
 const initialState: IBriefCase = getLocalStorage('briefCase') ? JSON.parse(getLocalStorage('briefCase') as string) : init;
 const ContextProvider: FC<PropsWithChildren> = ({ children }) => {
     const [briefCase, setBriefCase] = useState<IBriefCase>(initialState);
@@ -21,6 +21,7 @@ const ContextProvider: FC<PropsWithChildren> = ({ children }) => {
                 ...state,
             };
             newState.total = state.total - payload.price * payload.count;
+
             if (Math.abs(newState.total) < epsilon) {
                 newState.total = 0;
             }

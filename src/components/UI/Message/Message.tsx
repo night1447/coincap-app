@@ -23,7 +23,7 @@ const Message: FC<PropsWithChildren<MessageProps>> = ({
     return (
         showMessage ?
             <Portal containerID={'message'}>
-                <div className={styles.message}>
+                <div className={styles.message} onClick={onClose}>
                     <Typography type={'p'} className={`${styles.text} ${styles[type]}`}>
                         {children}
                     </Typography>
