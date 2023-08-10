@@ -17,6 +17,10 @@ const Modal: FC<PropsWithChildren<ModalProps>> = ({
                                                       className,
                                                       children,
                                                   }) => {
+    const closeModalHandler = () => {
+        onClose();
+        bodyScroll.unlock();
+    };
     if (showModal) {
         bodyScroll.lock();
         return (<Portal containerID={'modal'}>
@@ -25,14 +29,11 @@ const Modal: FC<PropsWithChildren<ModalProps>> = ({
                     type={'button'}
                     variant={'close'}
                     className={styles.close}
-                    onClick={() => {
-                        onClose();
-                        bodyScroll.unlock();
-                    }}
+                    onClick={closeModalHandler}
                 >
                     <SrOnly>Закрыть модальное окно</SrOnly>
                 </Button>
-                <div className={styles.backdrop}></div>
+                <div className={styles.backdrop} onClick={closeModalHandler}></div>
             </Portal>
         );
     }

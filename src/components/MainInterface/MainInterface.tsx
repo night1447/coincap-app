@@ -2,7 +2,7 @@ import Coins from '../Coins/Coins.tsx';
 import Button from '../UI/Button/Button.tsx';
 import Section from '../UI/Section/Section.tsx';
 import styles from './main.module.scss';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { ICurrency } from '../../models';
 import Modal from '../UI/Modal/Modal.tsx';
 import AddInterface from '../AddInterface/AddInterface.tsx';
@@ -31,15 +31,15 @@ const initialState: IModalSettings = {
   },
 };
 const MainInterface = () => {
-  const [offset, setOffset] = useState<number>(0);
+  const [page, setPage] = useState<number>(0);
   const [modalSettings, setModalSettings] =
       useState<IModalSettings>(initialState);
   const changeModalSettingsHandler = (coin: ICurrency) => {
     setModalSettings({ showModal: true, currentCoin: coin });
   };
-  const changeLimitHandler = () => {
-    setOffset((prevState) => prevState + OFFSET_STEP);
-  };
+  const changeLimitHandler = useCallback(() => {
+    setPage((prevState) => prevState + 1);
+  }, []);
 
   const closeModalHandler = () => {
     setModalSettings((prevState) => ({ ...prevState, showModal: false }));
@@ -49,7 +49,7 @@ const MainInterface = () => {
       <Section>
         <div className={styles.wrapper}>
           <Coins
-              offset={offset}
+              page={page}
               onChange={changeModalSettingsHandler}
               step={OFFSET_STEP}
           />

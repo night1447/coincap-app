@@ -67,7 +67,7 @@ const BuyingInterface: FC<BuyingInterfaceProps> = ({ coin }) => {
   const decreaseValueHandler = () => {
     setValue((prevValue) => {
       const dividedValue = getRoundingNumber(+prevValue - INPUT_STEP, 10);
-      return dividedValue.toString();
+      return checkCorrectionNumber(dividedValue.toString()).toString();
     });
   };
 

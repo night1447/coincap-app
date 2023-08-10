@@ -16,6 +16,7 @@ type IInterval =
 interface ISettings {
   limit?: number;
   offset?: number;
+  page?: number;
   step?: number;
   ids?: string[];
 }
@@ -26,8 +27,8 @@ const createSettings = (settings?: ISettings) => {
   let offset: number = settings?.offset || BASE_OFFSET;
   let limit: number = settings?.limit || BASE_LIMIT;
   const ids: string = settings?.ids?.length ? `&ids=${settings.ids.join(',')}` : '';
-  if (settings?.step && settings.offset) {
-    offset = limit + settings.offset - settings.step;
+  if (settings?.step && settings?.page) {
+    offset = (settings.limit || BASE_LIMIT) + (settings.page - 1) * settings.step;
     limit = settings.step;
   }
   return `?limit=${limit}&offset=${offset}${ids}`;
