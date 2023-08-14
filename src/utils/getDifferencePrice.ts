@@ -7,24 +7,35 @@ export interface IDifference {
     className: string;
 }
 
-const getDifferencePrice = (coins: IAdditionalCoin[], coin: ICurrency): IDifference => {
-    const findingIndex = coins.findIndex(item => item.coinId === coin.id);
-    if (findingIndex !== -1) {
-        const currentCoin = coins[findingIndex];
-        const count = currentCoin.count;
-        const different = (-currentCoin.price + +coin.priceUsd);
-        const value = +(different * count).toPrecision(2);
-        const percent = different / +currentCoin.price;
-        const sign = value >= 0 ? '+' : '-';
+const getDifferencePrice = (coins: IAdditionalCoin[], currentCoins: ICurrency[]): IDifference => {
+    let totalValue: number = 0;
+    let totalPercent: number = 0;
+    if (coins.length >= 1) {
+        const sortedCoins = coins.sort((first, second) => {
+            if (first.price <= second.price) {
+                return 1;
+            }
+            return -1;
+        });
+        currentCoins.map((currentCoin, index) => {
+            const count = sortedCoins[index].count;
+            const different = (-sortedCoins[index].price + +currentCoin.priceUsd);
+            const value = +(different * count).toPrecision(2);
+            const percent = different / +sortedCoins[index].price;
+            totalValue += value;
+            totalPercent += percent;
+        });
+
+        const sign = totalValue >= 0 ? '+' : '-';
         return {
-            percent: +percent.toPrecision(2),
-            value: `${sign}${Math.abs(value)}`,
-            className: getStylePriceDifference(value.toString()),
+            percent: +totalPercent.toPrecision(2),
+            value: `${sign}${Math.abs(totalValue)}`,
+            className: getStylePriceDifference(totalValue.toString()),
         };
     }
     return {
         percent: 0,
-        value: `+0`,
+        value: '+0',
         className: getStylePriceDifference('0'),
     };
 };

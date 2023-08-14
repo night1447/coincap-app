@@ -1,3 +1,4 @@
+@import "../../../settings";
 .header {
   position: fixed;
   z-index: 5;
@@ -13,4 +14,21 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  @include adpt($bmob-r) {
+    align-items: flex-start;
+  }
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  @include adpt($stab-r) {
+    gap: 24px;
+  }
+  @include adpt($bmob-r) {
+    flex-direction: column;
+    align-items: unset;
+    gap: 12px;
+  }
 }

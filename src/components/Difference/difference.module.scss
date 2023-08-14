@@ -1,0 +1,17 @@
+@import "../../settings";
+.block {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.difference {
+  font-size: 18px;
+  @include adpt($tab-r) {
+    font-size: 16px;
+  }
+}
+
+.title {
+  margin-bottom: 6px;
+}

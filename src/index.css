@@ -20,7 +20,11 @@ body {
   padding-top: 100px;
   background-color: var(--white);
 }
-
+@media (max-width: 576px) {
+  body{
+    padding-top: 120px;
+  }
+}
 h1,
 h2,
 h3,
