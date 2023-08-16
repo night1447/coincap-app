@@ -3,11 +3,11 @@ import Section from '../UI/Section/Section.tsx';
 import styles from './coin.module.scss';
 import { ICurrency } from '../../models';
 import Graphic from '../Graphic/Graphic.tsx';
-import $api from '../../api';
 import Button from '../UI/Button/Button.tsx';
 import { useNavigate } from 'react-router';
 import BuyingInterface from '../BuyingInterface/BuyingInterface.tsx';
 import Head from './Head/Head.tsx';
+import useCoinService from '../../services/useCoinService.ts';
 
 interface CoinProps {
   id: string;
@@ -27,18 +27,19 @@ const initialState: ICurrency = {
   vwap24Hr: 0,
 };
 const CoinInterface: FC<CoinProps> = ({ id }) => {
-  const [coin, setCoin] = useState<ICurrency>(initialState);
-  const navigate = useNavigate();
-  useEffect(() => {
-    $api.getCoin(id).then((coin) => setCoin(coin));
-  }, []);
-  const goBackHandler = () => {
-    navigate(-1);
-  };
+    const [coin, setCoin] = useState<ICurrency>(initialState);
+    const { getCoinById } = useCoinService();
+    const navigate = useNavigate();
+    useEffect(() => {
+        getCoinById(id).then((coin) => setCoin(coin));
+    }, []);
+    const goBackHandler = () => {
+        navigate(-1);
+    };
 
-  return (
-      <Section>
-          <Button
+    return (
+        <Section>
+            <Button
               type={'button'}
               variant={'error'}
               onClick={goBackHandler}

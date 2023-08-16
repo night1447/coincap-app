@@ -1,20 +1,23 @@
 import { FC, PropsWithChildren, useEffect, useState } from 'react';
+import Context from './index.ts';
+import { addLocalStorage, getLocalStorage } from '../utils/localStorage.ts';
+import createCoinIds from '../utils/createCoinIds.ts';
+import { IAdditionalCoin, IBriefCase } from '../models';
+import useCoinService from '../services/useCoinService.ts';
 
-import Context from '../../context';
-import { addLocalStorage, getLocalStorage } from '../../utils/localStorage.ts';
-import $api from '../../api';
-import createCoinIds from '../../utils/createCoinIds.ts';
-import { IAdditionalCoin, IBriefCase } from '../../models';
-
-const init: IBriefCase = {
-    coins: [],
-    count: 0,
-    total: 0,
-};
 const epsilon = 1e-100;
-const initialState: IBriefCase = getLocalStorage('briefCase') ? JSON.parse(getLocalStorage('briefCase') as string) : init;
+const getInitialState = () => {
+    const defaultState: IBriefCase = {
+        coins: [],
+        count: 0,
+        total: 0,
+    };
+    const initialState: IBriefCase = getLocalStorage('briefCase') ? JSON.parse(getLocalStorage('briefCase') as string) : defaultState;
+    return initialState;
+};
 const ContextProvider: FC<PropsWithChildren> = ({ children }) => {
-    const [briefCase, setBriefCase] = useState<IBriefCase>(initialState);
+    const [briefCase, setBriefCase] = useState<IBriefCase>(getInitialState());
+    const { getCertainCoins } = useCoinService();
     const removeCoinHandler = (payload: IAdditionalCoin) => {
         setBriefCase((state) => {
             const newState: IBriefCase = {
@@ -56,7 +59,7 @@ const ContextProvider: FC<PropsWithChildren> = ({ children }) => {
     };
     useEffect(() => {
         if (briefCase.coins.length) {
-            $api.getCoins({ ids: createCoinIds(briefCase.coins) }).then(items => {
+            getCertainCoins(createCoinIds(briefCase.coins)).then(items => {
                 const currentSum = items.reduce((currentSum, item, index) => currentSum + +item.priceUsd * briefCase.coins[index].count, 0);
                 changeTotalHandler(currentSum);
             });

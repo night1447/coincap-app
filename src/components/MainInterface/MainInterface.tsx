@@ -7,8 +7,6 @@ import { ICurrency } from '../../models';
 import Modal from '../UI/Modal/Modal.tsx';
 import AddInterface from '../AddInterface/AddInterface.tsx';
 
-const OFFSET_STEP = 30;
-
 interface IModalSettings {
   showModal: boolean;
   currentCoin: ICurrency;
@@ -51,7 +49,6 @@ const MainInterface = () => {
           <Coins
               page={page}
               onChange={changeModalSettingsHandler}
-              step={OFFSET_STEP}
           />
           <Button type={'button'} variant={'accent'} onClick={changeLimitHandler}>
             Показать больше

@@ -3,7 +3,7 @@ import styles from './graphic.module.scss';
 import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import getRoundingNumber from '../../utils/getRoundingNumber.ts';
 import { IHistory } from '../../models';
-import $api from '../../api';
+import useCoinService from '../../services/useCoinService.ts';
 
 interface IGraphicElement {
   name: string;
@@ -36,10 +36,9 @@ const createGraphicData = (data: IHistory[]) => {
 
 const Graphic: FC<GraphicProps> = ({ id, className }) => {
   const [graphicData, setGraphicData] = useState<IGraphicElement[]>([]);
+  const { getHistoryCoin } = useCoinService();
   useEffect(() => {
-    $api
-        .getHistory(id)
-        .then((history) => setGraphicData(createGraphicData(history)));
+    getHistoryCoin(id).then((history) => setGraphicData(createGraphicData(history)));
   }, []);
   return (
       <div className={`${styles.graphic} ${className || ''}`}>

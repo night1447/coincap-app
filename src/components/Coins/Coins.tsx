@@ -2,20 +2,19 @@ import { ICurrency } from '../../models';
 import Coin from './Coin/Coin.tsx';
 import styles from './coins.module.scss';
 import { FC, useEffect, useState } from 'react';
-import $api from '../../api';
 import Titles from './Titles/Titles.tsx';
+import useCoinService from '../../services/useCoinService.ts';
 
 interface CoinsProps {
     page: number;
-    step: number;
     onChange: (coin: ICurrency) => void;
 }
 
-const Coins: FC<CoinsProps> = ({ page, step, onChange }) => {
+const Coins: FC<CoinsProps> = ({ page, onChange }) => {
     const [coins, setCoins] = useState<ICurrency[]>([]);
-
+    const { getCertainPageCoins } = useCoinService();
     useEffect(() => {
-        $api.getCoins({ step, page }).then((items) => {
+        getCertainPageCoins(page).then((items) => {
             setCoins((prevState) => [...prevState, ...items]);
         });
     }, [page]);
