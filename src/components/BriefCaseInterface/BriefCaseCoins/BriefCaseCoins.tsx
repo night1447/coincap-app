@@ -1,14 +1,14 @@
-import { FC, useContext, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import BriefCaseCoin from '../BriefCaseCoin/BriefCaseCoin.tsx';
 import { IWideCoin } from '../../../models';
 import styles from './list.module.scss';
 import createCoinIds from '../../../utils/createCoinIds.ts';
-import context from '../../../context';
 import useCoinService from '../../../services/useCoinService.ts';
+import useNameContext from '../../../hooks/useNameContext.ts';
 
 
 const BriefCaseCoins: FC = () => {
-    const briefCase = useContext(context);
+    const briefCase = useNameContext();
     const [coins, setCoins] = useState<IWideCoin[]>([]);
     const { getCertainCoins } = useCoinService();
     useEffect(() => {

@@ -1,17 +1,17 @@
-import { FC, useContext } from 'react';
+import { FC } from 'react';
 import Typography from '../../UI/Typography/Typography.tsx';
 import { IWideCoin } from '../../../models';
 import styles from './coin.module.scss';
 import Button from '../../UI/Button/Button.tsx';
 import { TrashIcon } from '../../UI/Icons';
-import context from '../../../context';
+import useNameContext from '../../../hooks/useNameContext.ts';
 
 interface BriefCaseCoinProps {
     coin: IWideCoin;
 }
 
 const BriefCaseCoin: FC<BriefCaseCoinProps> = ({ coin }) => {
-    const { removeCoin } = useContext(context);
+    const { removeCoin } = useNameContext();
 
     const deleteCoinHandler = () => {
         removeCoin({

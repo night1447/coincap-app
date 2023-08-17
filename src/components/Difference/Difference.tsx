@@ -1,12 +1,12 @@
-import { FC, useContext, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import getDifferencePrice, { IDifference } from '../../utils/getDifferencePrice.ts';
-import context from '../../context';
 import createCoinIds from '../../utils/createCoinIds.ts';
 import getRoundingNumber from '../../utils/getRoundingNumber.ts';
 import getCurrency from '../../utils/getCurrency.ts';
 import Typography from '../UI/Typography/Typography.tsx';
 import styles from './difference.module.scss';
 import useCoinService from '../../services/useCoinService.ts';
+import useNameContext from '../../hooks/useNameContext.ts';
 
 const initialState: IDifference = {
     className: '',
@@ -14,7 +14,7 @@ const initialState: IDifference = {
     percent: 0,
 };
 const Difference: FC = () => {
-    const briefCase = useContext(context);
+    const briefCase = useNameContext();
     const [difference, setDifference] = useState<IDifference>(initialState);
     const { getCertainCoins } = useCoinService();
     useEffect(() => {

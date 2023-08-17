@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useContext, useState } from 'react';
+import React, { ChangeEvent, FC, useState } from 'react';
 import { ICurrency } from '../../models';
 import Button from '../UI/Button/Button.tsx';
 import TextField from '../UI/TextField/TextField.tsx';
@@ -6,8 +6,8 @@ import styles from './buying.module.scss';
 import Message, { IMessageType } from '../UI/Message/Message.tsx';
 import Total from './Total/Total.tsx';
 import ProductInformation from './ProductInformation/ProductInformation.tsx';
-import context from '../../context';
 import getRoundingNumber from '../../utils/getRoundingNumber.ts';
+import useNameContext from '../../hooks/useNameContext.ts';
 
 interface BuyingInterfaceProps {
   coin: ICurrency;
@@ -28,7 +28,7 @@ const INPUT_STEP = 0.01;
 const checkCorrectionNumber = (value: string) => (+value >= 0 ? value : 0);
 const BuyingInterface: FC<BuyingInterfaceProps> = ({ coin }) => {
   const [value, setValue] = useState<string>('');
-  const { addCoin } = useContext(context);
+  const { addCoin } = useNameContext();
   const [messageSettings, setMessageSettings] =
       useState<IMessageSettings>(initialState);
   const submitFormHandler = (event: React.FormEvent) => {
