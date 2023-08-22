@@ -37,11 +37,11 @@ export const PurchaseInterface = ({ coin }: PurchaseInterfaceProps) => {
     event.preventDefault();
     let message: string;
     let type: IMessageType;
-    if (!value || value === '0') {
+    if (!value || +value === 0) {
       message = `Увы нечего добавлять, вы не увеличили количество валюты`;
       type = 'error';
     } else {
-      message = `Отлично, ${coin.symbol} добавлена в ваш кошелек в размере ${value}`;
+      message = `Отлично, ${coin.symbol} добавлена в ваш кошелек в размере ${+value}`;
       type = 'success';
       addCoin({
         coinId: coin.id,
