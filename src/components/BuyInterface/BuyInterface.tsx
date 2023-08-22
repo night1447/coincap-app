@@ -26,7 +26,7 @@ const initialState: IMessageSettings = {
 };
 const INPUT_STEP = 0.01;
 const checkCorrectionNumber = (value: string) => (+value >= 0 ? value : 0);
-const BuyingInterface: FC<BuyingInterfaceProps> = ({ coin }) => {
+const BuyInterface: FC<BuyingInterfaceProps> = ({ coin }) => {
   const [value, setValue] = useState<string>('');
   const { addCoin } = useNameContext();
   const [messageSettings, setMessageSettings] =
@@ -35,7 +35,7 @@ const BuyingInterface: FC<BuyingInterfaceProps> = ({ coin }) => {
     event.preventDefault();
     let message: string;
     let type: IMessageType;
-    if (value && value === '0') {
+    if (!value || value === '0') {
       message = `Увы нечего добавлять, вы не увеличили количество валюты`;
       type = 'error';
     } else {
@@ -122,4 +122,4 @@ const BuyingInterface: FC<BuyingInterfaceProps> = ({ coin }) => {
       </form>
   );
 };
-export default BuyingInterface;
+export default BuyInterface;

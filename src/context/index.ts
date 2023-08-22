@@ -18,5 +18,5 @@ const initialState: IContext = {
     changeTotal: () => {
     },
 };
- const context = createContext(initialState);
- export default context;
+const context = createContext(initialState);
+export default context;

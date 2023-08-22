@@ -1,6 +1,6 @@
 import { ICurrency } from '../../models';
 import { FC } from 'react';
-import BuyingInterface from '../BuyingInterface/BuyingInterface.tsx';
+import BuyInterface from '../BuyInterface/BuyInterface.tsx';
 import styles from './add.module.scss'
 interface AddInterfaceProps {
     coin: ICurrency;
@@ -9,7 +9,7 @@ interface AddInterfaceProps {
 const AddInterface: FC<AddInterfaceProps> = ({ coin }) => {
     return (
         <div className={styles.block}>
-            <BuyingInterface coin={coin} />
+            <BuyInterface coin={coin} />
         </div>
     );
 };
