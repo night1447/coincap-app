@@ -4,8 +4,7 @@ import Section from '../UI/Section/Section.tsx';
 import styles from './main.module.scss';
 import { useCallback, useState } from 'react';
 import { ICurrency } from '../../models';
-import Modal from '../UI/Modal/Modal.tsx';
-import AddInterface from '../AddInterface/AddInterface.tsx';
+import SupplementalModal from '../AddInterface/SupplementalModal.tsx';
 
 interface IModalSettings {
   showModal: boolean;
@@ -53,9 +52,9 @@ const MainInterface = () => {
           <Button type={'button'} variant={'accent'} onClick={changeLimitHandler}>
             Показать больше
           </Button>
-          <Modal showModal={modalSettings.showModal} className={styles.modal} onClose={closeModalHandler}>
-            <AddInterface coin={modalSettings.currentCoin} />
-          </Modal>
+          <SupplementalModal coin={modalSettings.currentCoin}
+                             showModal={modalSettings.showModal}
+                             onClose={closeModalHandler} />
         </div>
       </Section>
   );

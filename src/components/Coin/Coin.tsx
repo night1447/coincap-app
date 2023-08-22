@@ -5,7 +5,7 @@ import { ICurrency } from '../../models';
 import Graphic from '../Graphic/Graphic.tsx';
 import Button from '../UI/Button/Button.tsx';
 import { useNavigate } from 'react-router';
-import BuyInterface from '../BuyInterface/BuyInterface.tsx';
+import PurchaseInterface from '../PurchaseInterface/PurchaseInterface.tsx';
 import Head from './Head/Head.tsx';
 import useCoinService from '../../services/useCoinService.ts';
 
@@ -49,7 +49,7 @@ const CoinInterface: FC<CoinProps> = ({ id }) => {
           </Button>
           <Head coin={coin} />
           <Graphic id={id} className={styles.graphic} />
-          <BuyInterface coin={coin} />
+          <PurchaseInterface coin={coin} />
       </Section>
   );
 };
