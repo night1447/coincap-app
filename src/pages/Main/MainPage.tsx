@@ -1,11 +1,10 @@
-import { FC } from 'react';
-import Layout from '../../components/Layout/Layout.tsx';
-import MainInterface from '../../components/MainInterface/MainInterface.tsx';
+import { Layout } from '../../components/Layout/Layout.tsx';
+import { IndexSection } from '../../components/IndexSection/IndexSection.tsx';
 
-const MainPage: FC = () => {
+const MainPage = () => {
     return (
         <Layout>
-            <MainInterface />
+            <IndexSection />
         </Layout>
     );
 };

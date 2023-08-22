@@ -1,15 +1,15 @@
-import { FC } from 'react';
 import { ICurrency } from '../../../models';
-import styles from './head.module.scss';
-import Typography from '../../UI/Typography/Typography.tsx';
+import { Typography } from '../../UI/Typography/Typography.tsx';
 import getCurrency from '../../../utils/getCurrency.ts';
 import getStylePriceDifference from '../../../utils/getStylePriceDifference.ts';
+
+import styles from './head.module.scss';
 
 interface HeadProps {
     coin: ICurrency;
 }
 
-const Head: FC<HeadProps> = ({ coin }) => {
+export const Head = ({ coin }: HeadProps) => {
     return (
         <div className={styles.head}>
             <div className={styles.inner}>
@@ -60,4 +60,3 @@ const Head: FC<HeadProps> = ({ coin }) => {
         </div>
     );
 };
-export default Head;

@@ -1,29 +1,30 @@
-import { FC, useEffect, useState } from 'react';
-import BriefCaseCoin from '../BriefCaseCoin/BriefCaseCoin.tsx';
+import { useEffect, useState } from 'react';
+
+import { BagCoin } from '../BagCoin/BagCoin.tsx';
 import { IWideCoin } from '../../../models';
-import styles from './list.module.scss';
 import createCoinIds from '../../../utils/createCoinIds.ts';
-import useCoinService from '../../../services/useCoinService.ts';
-import useNameContext from '../../../hooks/useNameContext.ts';
+import { useCoinService } from '../../../services/useCoinService.ts';
+import { useNameContext } from '../../../hooks/useNameContext.ts';
+
+import styles from './list.module.scss';
 
 
-const BriefCaseCoins: FC = () => {
-    const briefCase = useNameContext();
+export const BagCoins = () => {
+    const bag = useNameContext();
     const [coins, setCoins] = useState<IWideCoin[]>([]);
     const { getCertainCoins } = useCoinService();
     useEffect(() => {
-        getCertainCoins(createCoinIds(briefCase.coins)).then((response) => {
+        getCertainCoins(createCoinIds(bag.coins)).then((response) => {
             const result = response.map((item, index): IWideCoin => ({
                 coin: item,
-                count: briefCase.coins[index]?.count,
+                count: bag.coins[index]?.count,
             }));
             setCoins(result);
         });
-    }, [briefCase.coins]);
+    }, [bag.coins]);
     return (
         <ul className={styles.list}>
-            {coins.map(coin => <BriefCaseCoin key={coin.coin.id} coin={coin} />)}
+            {coins.map(coin => <BagCoin key={coin.coin.id} coin={coin} />)}
         </ul>
     );
 };
-export default BriefCaseCoins;

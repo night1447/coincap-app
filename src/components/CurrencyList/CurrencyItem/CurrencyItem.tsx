@@ -1,15 +1,15 @@
-import { FC } from 'react';
 import { ICurrency } from '../../../models';
-import Typography from '../../UI/Typography/Typography.tsx';
-import styles from './currency.module.scss';
+import { Typography } from '../../UI/Typography/Typography.tsx';
 import getCurrency from '../../../utils/getCurrency.ts';
 import getStylePriceDifference from '../../../utils/getStylePriceDifference.ts';
+
+import styles from './currency.module.scss';
 
 interface CurrencyItemProps {
     currency: ICurrency;
 }
 
-const CurrencyItem: FC<CurrencyItemProps> = ({ currency }) => {
+export const CurrencyItem = ({ currency }: CurrencyItemProps) => {
     return (
         <li className={styles.item}>
             <Typography type={'h3'} className={styles.name}>
@@ -28,4 +28,4 @@ const CurrencyItem: FC<CurrencyItemProps> = ({ currency }) => {
         </li>
     );
 };
-export default CurrencyItem;
+

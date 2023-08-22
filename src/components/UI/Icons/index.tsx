@@ -1,10 +1,8 @@
-import { FC } from 'react';
-
 interface SvgProps {
     className?: string;
 }
 
-export const ProfileIcon: FC<SvgProps> = ({ className }) => (<svg width='24' height='24' viewBox='0 0 24 24'
+export const ProfileIcon = ({ className }: SvgProps) => (<svg width='24' height='24' viewBox='0 0 24 24'
                                                               fill='none'
                                                               className={className}
                                                               xmlns='http://www.w3.org/2000/svg'>
@@ -14,7 +12,7 @@ export const ProfileIcon: FC<SvgProps> = ({ className }) => (<svg width='24' hei
     </svg>)
 ;
 
-export const TrashIcon: FC<SvgProps> = ({ className }) => (<svg className={className} width='48' height='48'
+export const TrashIcon = ({ className }: SvgProps) => (<svg className={className} width='48' height='48'
                                                             viewBox='0 0 48 48' fill='none'
                                                             xmlns='http://www.w3.org/2000/svg'>
         <path

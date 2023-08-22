@@ -1,16 +1,16 @@
 import { ICurrency } from '../../models';
-import { FC } from 'react';
-import PurchaseInterface from '../PurchaseInterface/PurchaseInterface.tsx';
-import styles from './add.module.scss';
-import Modal from '../UI/Modal/Modal.tsx';
+import { PurchaseInterface } from '../PurchaseInterface/PurchaseInterface.tsx';
+import { Modal } from '../UI/Modal/Modal.tsx';
 
-interface AddInterfaceProps {
+import styles from './add.module.scss';
+
+interface AddModalProps {
     coin: ICurrency;
     onClose: () => void;
     showModal: boolean;
 }
 
-const SupplementalModal: FC<AddInterfaceProps> = ({ coin, showModal, onClose }) => {
+export const AddModal = ({ coin, showModal, onClose }: AddModalProps) => {
     return (
         <Modal showModal={showModal} onClose={onClose} className={styles.modal}>
             <div className={styles.block}>
@@ -20,4 +20,3 @@ const SupplementalModal: FC<AddInterfaceProps> = ({ coin, showModal, onClose }) 
 
     );
 };
-export default SupplementalModal;

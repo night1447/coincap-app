@@ -1,15 +1,15 @@
-import { FC } from 'react';
-import Typography from '../../UI/Typography/Typography.tsx';
-import styles from '../buying.module.scss';
-import getCurrency from '../../../utils/getCurrency.ts';
 import { ICurrency } from '../../../models';
+import { Typography } from '../../UI/Typography/Typography.tsx';
+import getCurrency from '../../../utils/getCurrency.ts';
+
+import styles from '../buying.module.scss';
 
 
 interface ProductInformationProps {
     coin: ICurrency;
 }
 
-const ProductInformation: FC<ProductInformationProps> = ({ coin }) => {
+export const ProductInformation = ({ coin }: ProductInformationProps) => {
     return (
         <>
             <Typography type={'h2'} className={styles.title}>
@@ -27,4 +27,3 @@ const ProductInformation: FC<ProductInformationProps> = ({ coin }) => {
         </>
     );
 };
-export default ProductInformation;

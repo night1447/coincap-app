@@ -1,9 +1,11 @@
-import { FC, useEffect, useState } from 'react';
-import styles from './graphic.module.scss';
+import { useEffect, useState } from 'react';
 import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+
 import getRoundingNumber from '../../utils/getRoundingNumber.ts';
 import { IHistory } from '../../models';
-import useCoinService from '../../services/useCoinService.ts';
+import { useCoinService } from '../../services/useCoinService.ts';
+
+import styles from './graphic.module.scss';
 
 interface IGraphicElement {
   name: string;
@@ -34,7 +36,7 @@ const createGraphicData = (data: IHistory[]) => {
   return result;
 };
 
-const Graphic: FC<GraphicProps> = ({ id, className }) => {
+export const Graphic = ({ id, className }: GraphicProps) => {
   const [graphicData, setGraphicData] = useState<IGraphicElement[]>([]);
   const { getHistoryCoin } = useCoinService();
   useEffect(() => {
@@ -60,5 +62,3 @@ const Graphic: FC<GraphicProps> = ({ id, className }) => {
       </div>
   );
 };
-
-export default Graphic;

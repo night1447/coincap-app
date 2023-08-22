@@ -1,26 +1,27 @@
-import { FC, PropsWithChildren, useEffect, useState } from 'react';
+import { PropsWithChildren, useEffect, useState } from 'react';
+
+import { IAdditionalCoin, IBag } from '../models';
+import { useCoinService } from '../services/useCoinService.ts';
 import Context from './index.ts';
 import { addLocalStorage, getLocalStorage } from '../utils/localStorage.ts';
 import createCoinIds from '../utils/createCoinIds.ts';
-import { IAdditionalCoin, IBriefCase } from '../models';
-import useCoinService from '../services/useCoinService.ts';
 
-const epsilon = 1e-100;
+const epsilon = 1e-100000;
 const getInitialState = () => {
-    const defaultState: IBriefCase = {
+    const defaultState: IBag = {
         coins: [],
         count: 0,
         total: 0,
     };
-    const initialState: IBriefCase = getLocalStorage('briefCase') ? JSON.parse(getLocalStorage('briefCase') as string) : defaultState;
+    const initialState: IBag = getLocalStorage('bag') ? JSON.parse(getLocalStorage('bag') as string) : defaultState;
     return initialState;
 };
-const ContextProvider: FC<PropsWithChildren> = ({ children }) => {
-    const [briefCase, setBriefCase] = useState<IBriefCase>(getInitialState());
+const ContextProvider = ({ children }: PropsWithChildren) => {
+    const [bag, setBag] = useState<IBag>(getInitialState());
     const { getCertainCoins } = useCoinService();
     const removeCoinHandler = (payload: IAdditionalCoin) => {
-        setBriefCase((state) => {
-            const newState: IBriefCase = {
+        setBag((state) => {
+            const newState: IBag = {
                 ...state,
             };
             newState.total = state.total - payload.price * payload.count;
@@ -35,8 +36,8 @@ const ContextProvider: FC<PropsWithChildren> = ({ children }) => {
 
     };
     const addCoinHandler = (payload: IAdditionalCoin) => {
-        setBriefCase((state) => {
-            const newState: IBriefCase = {
+        setBag((state) => {
+            const newState: IBag = {
                 ...state,
             };
             const findingCoinIndex = state.coins.findIndex(coin => coin.coinId === payload.coinId);
@@ -52,27 +53,27 @@ const ContextProvider: FC<PropsWithChildren> = ({ children }) => {
         });
     };
     const changeTotalHandler = (payload: number) => {
-        setBriefCase((prevState) => ({
+        setBag((prevState) => ({
             ...prevState,
             total: payload,
         }));
     };
     useEffect(() => {
-        if (briefCase.coins.length) {
-            getCertainCoins(createCoinIds(briefCase.coins)).then(items => {
-                const currentSum = items.reduce((currentSum, item, index) => currentSum + +item.priceUsd * briefCase.coins[index].count, 0);
+        if (bag.coins.length) {
+            getCertainCoins(createCoinIds(bag.coins)).then(items => {
+                const currentSum = items.reduce((currentSum, item, index) => currentSum + +item.priceUsd * bag.coins[index].count, 0);
                 changeTotalHandler(currentSum);
             });
         }
-    }, [briefCase.coins]);
+    }, [bag.coins]);
 
     useEffect(() => {
-        addLocalStorage('briefCase', JSON.stringify(briefCase));
-    }, [briefCase]);
+        addLocalStorage('bag', JSON.stringify(bag));
+    }, [bag]);
 
     return (
         <Context.Provider value={{
-            ...briefCase,
+            ...bag,
             removeCoin: removeCoinHandler,
             changeTotal: changeTotalHandler,
             addCoin: addCoinHandler,

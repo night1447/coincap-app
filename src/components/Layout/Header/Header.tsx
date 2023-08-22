@@ -1,11 +1,11 @@
-import { FC } from 'react';
-import Profile from '../../Profile/Profile.tsx';
-import CurrencyList from '../../CurrencyList/CurrencyList.tsx';
-import Container from '../../UI/Container/Container.tsx';
-import styles from './header.module.scss';
-import Difference from '../../Difference/Difference.tsx';
+import { Profile } from '../../Profile/Profile.tsx';
+import { CurrencyList } from '../../CurrencyList/CurrencyList.tsx';
+import { Container } from '../../UI/Container/Container.tsx';
+import { Difference } from '../../Difference/Difference.tsx';
 
-const Header: FC = () => {
+import styles from './header.module.scss';
+
+export const Header = () => {
     return (
         <header className={styles.header}>
             <Container>
@@ -20,4 +20,3 @@ const Header: FC = () => {
         </header>
     );
 };
-export default Header;

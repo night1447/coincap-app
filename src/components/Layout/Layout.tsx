@@ -1,7 +1,8 @@
-import { FC, PropsWithChildren } from 'react';
-import Header from './Header/Header.tsx';
+import { PropsWithChildren } from 'react';
 
-const Layout: FC<PropsWithChildren> = ({ children }) => {
+import { Header } from './Header/Header.tsx';
+
+export const Layout = ({ children }: PropsWithChildren) => {
     return (
         <>
             <Header />
@@ -9,4 +10,3 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
         </>
     );
 };
-export default Layout;

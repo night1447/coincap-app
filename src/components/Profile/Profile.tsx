@@ -1,10 +1,12 @@
-import { FC, useState } from 'react';
-import Button from '../UI/Button/Button.tsx';
-import styles from './profile.module.scss';
-import BriefCaseInterface from '../BriefCaseInterface/BriefCaseInterface.tsx';
+import { useState } from 'react';
+
+import { Bag } from '../Bag/Bag.tsx';
+import { Button } from '../UI/Button/Button.tsx';
 import { ProfileIcon } from '../UI/Icons';
 
-const Profile: FC = () => {
+import styles from './profile.module.scss';
+
+export const Profile = () => {
     const [showBriefCase, setShowBriefCase] = useState(false);
 
     const closeBriefCaseHandler = () => {
@@ -26,8 +28,7 @@ const Profile: FC = () => {
             >
                 <ProfileIcon />
             </Button>
-            <BriefCaseInterface onClose={closeBriefCaseHandler} showBriefCase={showBriefCase} />
+            <Bag onClose={closeBriefCaseHandler} showBag={showBriefCase} />
         </>
     );
 };
-export default Profile;

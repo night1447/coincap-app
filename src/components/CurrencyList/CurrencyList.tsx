@@ -1,10 +1,12 @@
-import { FC, useEffect, useState } from 'react';
-import CurrencyItem from './CurrencyItem/CurrencyItem.tsx';
-import styles from './currencies.module.scss';
-import { ICurrency } from '../../models';
-import useCoinService from '../../services/useCoinService.ts';
+import { useEffect, useState } from 'react';
 
-const CurrencyList: FC = () => {
+import { CurrencyItem } from './CurrencyItem/CurrencyItem.tsx';
+import { ICurrency } from '../../models';
+import { useCoinService } from '../../services/useCoinService.ts';
+
+import styles from './currencies.module.scss';
+
+export const CurrencyList = () => {
   const [currencies, setCurrencies] = useState<ICurrency[]>([]);
   const { getAllCoins } = useCoinService();
   useEffect(() => {
@@ -19,4 +21,3 @@ const CurrencyList: FC = () => {
       </ul>
   );
 };
-export default CurrencyList;

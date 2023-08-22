@@ -1,4 +1,5 @@
 import { RouteObject } from 'react-router-dom';
+
 import MainPage from '../pages/Main/MainPage.tsx';
 import CoinPage from '../pages/CoinPage/CoinPage.tsx';
 

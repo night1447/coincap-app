@@ -1,12 +1,14 @@
-import React, { CSSProperties, FC, PropsWithChildren } from 'react';
+import React, { CSSProperties, PropsWithChildren } from 'react';
+
 import styles from './typography.module.scss';
+
 
 type TypographyType = 'h1' | 'h2' | 'h3' | 'p';
 
 interface TypographyProps {
-  type: TypographyType;
-  sx?: CSSProperties;
-  className?: string;
+    type: TypographyType;
+    sx?: CSSProperties;
+    className?: string;
 }
 
 const getCurrentTypeStyles = (type: TypographyType) => {
@@ -28,19 +30,14 @@ const getCurrentTypeStyles = (type: TypographyType) => {
   }
 };
 
-const Typography: FC<PropsWithChildren<TypographyProps>> = ({
-                                                              type,
-                                                              children,
-                                                              className,
-                                                              sx,
-                                                            }) => {
-  return React.createElement(
-      type,
-      {
-        className: getCurrentTypeStyles(type) + ` ${className || ''}`,
-        style: sx,
-      },
-      children,
-  );
+export const Typography = ({ type, children, className, sx }: PropsWithChildren<TypographyProps>) => {
+    return React.createElement(
+        type,
+        {
+            className: getCurrentTypeStyles(type) + ` ${className || ''}`,
+            style: sx,
+        },
+        children,
+    );
 };
-export default Typography;
+

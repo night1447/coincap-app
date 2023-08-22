@@ -1,15 +1,17 @@
-import React, { ChangeEvent, FC, useState } from 'react';
-import { ICurrency } from '../../models';
-import Button from '../UI/Button/Button.tsx';
-import TextField from '../UI/TextField/TextField.tsx';
-import styles from './buying.module.scss';
-import Message, { IMessageType } from '../UI/Message/Message.tsx';
-import Total from './Total/Total.tsx';
-import ProductInformation from './ProductInformation/ProductInformation.tsx';
-import getRoundingNumber from '../../utils/getRoundingNumber.ts';
-import useNameContext from '../../hooks/useNameContext.ts';
+import React, { ChangeEvent, useState } from 'react';
 
-interface BuyingInterfaceProps {
+import { ICurrency } from '../../models';
+import { IMessageType, Message } from '../UI/Message/Message.tsx';
+import { Button } from '../UI/Button/Button.tsx';
+import { TextField } from '../UI/TextField/TextField.tsx';
+import { Total } from './Total/Total.tsx';
+import { ProductInformation } from './ProductInformation/ProductInformation.tsx';
+import getRoundingNumber from '../../utils/getRoundingNumber.ts';
+import { useNameContext } from '../../hooks/useNameContext.ts';
+
+import styles from './buying.module.scss';
+
+interface PurchaseInterfaceProps {
   coin: ICurrency;
 }
 
@@ -26,7 +28,7 @@ const initialState: IMessageSettings = {
 };
 const INPUT_STEP = 0.01;
 const checkCorrectionNumber = (value: string) => (+value >= 0 ? value : 0);
-const BuyInterface: FC<BuyingInterfaceProps> = ({ coin }) => {
+export const PurchaseInterface = ({ coin }: PurchaseInterfaceProps) => {
   const [value, setValue] = useState<string>('');
   const { addCoin } = useNameContext();
   const [messageSettings, setMessageSettings] =
@@ -122,4 +124,3 @@ const BuyInterface: FC<BuyingInterfaceProps> = ({ coin }) => {
       </form>
   );
 };
-export default BuyInterface;

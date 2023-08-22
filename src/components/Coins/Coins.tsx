@@ -1,16 +1,18 @@
+import { useEffect, useState } from 'react';
+
 import { ICurrency } from '../../models';
-import Coin from './Coin/Coin.tsx';
+import { Coin } from './Coin/Coin.tsx';
+import { Titles } from './Titles/Titles.tsx';
+import { useCoinService } from '../../services/useCoinService.ts';
+
 import styles from './coins.module.scss';
-import { FC, useEffect, useState } from 'react';
-import Titles from './Titles/Titles.tsx';
-import useCoinService from '../../services/useCoinService.ts';
 
 interface CoinsProps {
     page: number;
     onChange: (coin: ICurrency) => void;
 }
 
-const Coins: FC<CoinsProps> = ({ page, onChange }) => {
+export const Coins = ({ page, onChange }: CoinsProps) => {
     const [coins, setCoins] = useState<ICurrency[]>([]);
     const { getCertainPageCoins } = useCoinService();
     useEffect(() => {
@@ -30,4 +32,4 @@ const Coins: FC<CoinsProps> = ({ page, onChange }) => {
         </table>
     );
 };
-export default Coins;
+

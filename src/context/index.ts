@@ -1,7 +1,7 @@
 import { createContext } from 'react';
-import { IAdditionalCoin, IBriefCase } from '../models';
+import { IAdditionalCoin, IBag } from '../models';
 
-interface IContext extends IBriefCase {
+interface IContext extends IBag {
     removeCoin: (payload: IAdditionalCoin) => void,
     changeTotal: (payload: number) => void,
     addCoin: (payload: IAdditionalCoin) => void,

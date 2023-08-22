@@ -1,35 +1,37 @@
-import { FC, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+
 import getDifferencePrice, { IDifference } from '../../utils/getDifferencePrice.ts';
 import createCoinIds from '../../utils/createCoinIds.ts';
 import getRoundingNumber from '../../utils/getRoundingNumber.ts';
 import getCurrency from '../../utils/getCurrency.ts';
-import Typography from '../UI/Typography/Typography.tsx';
+import { Typography } from '../UI/Typography/Typography.tsx';
+import { useCoinService } from '../../services/useCoinService.ts';
+import { useNameContext } from '../../hooks/useNameContext.ts';
+
 import styles from './difference.module.scss';
-import useCoinService from '../../services/useCoinService.ts';
-import useNameContext from '../../hooks/useNameContext.ts';
 
 const initialState: IDifference = {
     className: '',
     value: '+0',
     percent: 0,
 };
-const Difference: FC = () => {
-    const briefCase = useNameContext();
+export const Difference = () => {
+    const bag = useNameContext();
     const [difference, setDifference] = useState<IDifference>(initialState);
     const { getCertainCoins } = useCoinService();
     useEffect(() => {
-        if (briefCase.coins.length > 0) {
-            getCertainCoins(createCoinIds(briefCase.coins)).then((items) => {
-                setDifference(getDifferencePrice(briefCase.coins, items));
+        if (bag.coins.length > 0) {
+            getCertainCoins(createCoinIds(bag.coins)).then((items) => {
+                setDifference(getDifferencePrice(bag.coins, items));
             });
         }
-    }, [briefCase.coins]);
+    }, [bag.coins]);
     return (
         <div>
             <Typography type={'p'} className={styles.title}>Стоимость портфеля</Typography>
             <div className={styles.block}>
                 <Typography type={'h3'}>
-                    {getRoundingNumber(briefCase.total)}{getCurrency()}
+                    {getRoundingNumber(bag.total)}{getCurrency()}
                 </Typography>
                 <Typography type={'p'}>
                 <span className={`${difference?.className || ''} ${styles.difference}`}>
@@ -40,4 +42,4 @@ const Difference: FC = () => {
         </div>
     );
 };
-export default Difference;
+

@@ -1,9 +1,11 @@
+import { RouterProvider } from 'react-router-dom';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import './reset.css';
+
 import ContextProvider from './context/ContextProvider.tsx';
 import router from './routing';
-import { RouterProvider } from 'react-router-dom';
+
+import './index.css';
+import './reset.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <ContextProvider>

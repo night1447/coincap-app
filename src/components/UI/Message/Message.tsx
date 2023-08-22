@@ -1,9 +1,11 @@
-import { FC, PropsWithChildren } from 'react';
-import Typography from '../Typography/Typography.tsx';
-import styles from './message.module.scss';
-import Portal from '../Portal/Portal.tsx';
-import Button from '../Button/Button.tsx';
+import { PropsWithChildren } from 'react';
+
+import { Typography } from '../Typography/Typography.tsx';
+import { Portal } from '../Portal/Portal.tsx';
+import { Button } from '../Button/Button.tsx';
 import { SrOnly } from '../SrOnly/SrOnly.tsx';
+
+import styles from './message.module.scss';
 
 export type IMessageType = 'success' | 'error' | '';
 
@@ -13,13 +15,7 @@ interface MessageProps {
     onClose: () => void;
 }
 
-const Message: FC<PropsWithChildren<MessageProps>> = ({
-                                                          children,
-                                                          showMessage,
-                                                          type,
-                                                          onClose,
-                                                      }) => {
-
+export const Message = ({ children, showMessage, type, onClose }: PropsWithChildren<MessageProps>) => {
     return (
         showMessage ?
             <Portal containerID={'message'}>
@@ -34,4 +30,4 @@ const Message: FC<PropsWithChildren<MessageProps>> = ({
             </Portal> : <></>
     );
 };
-export default Message;
+

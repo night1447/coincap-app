@@ -1,10 +1,12 @@
-import Coins from '../Coins/Coins.tsx';
-import Button from '../UI/Button/Button.tsx';
-import Section from '../UI/Section/Section.tsx';
-import styles from './main.module.scss';
 import { useCallback, useState } from 'react';
+
 import { ICurrency } from '../../models';
-import SupplementalModal from '../AddInterface/SupplementalModal.tsx';
+import { Coins } from '../Coins/Coins.tsx';
+import { Button } from '../UI/Button/Button.tsx';
+import { Section } from '../UI/Section/Section.tsx';
+import { AddModal } from '../AddModal/AddModal.tsx';
+
+import styles from './main.module.scss';
 
 interface IModalSettings {
   showModal: boolean;
@@ -27,7 +29,7 @@ const initialState: IModalSettings = {
     vwap24Hr: 0,
   },
 };
-const MainInterface = () => {
+export const IndexSection = () => {
   const [page, setPage] = useState<number>(0);
   const [modalSettings, setModalSettings] =
       useState<IModalSettings>(initialState);
@@ -52,11 +54,11 @@ const MainInterface = () => {
           <Button type={'button'} variant={'accent'} onClick={changeLimitHandler}>
             Показать больше
           </Button>
-          <SupplementalModal coin={modalSettings.currentCoin}
-                             showModal={modalSettings.showModal}
-                             onClose={closeModalHandler} />
+          <AddModal coin={modalSettings.currentCoin}
+                    showModal={modalSettings.showModal}
+                    onClose={closeModalHandler} />
         </div>
       </Section>
   );
 };
-export default MainInterface;
+

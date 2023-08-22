@@ -1,5 +1,4 @@
 import styles from '../coins.module.scss';
-import { FC } from 'react';
 
 interface ITitle {
     className: string;
@@ -17,7 +16,7 @@ const titles: ITitle[] = [
     { className: '', title: 'Изменения(24Hr)' },
 ];
 
-export const Titles: FC = () => {
+export const Titles = () => {
     return (
         <tr>
             {titles.map((item) => (
@@ -30,5 +29,3 @@ export const Titles: FC = () => {
         </tr>
     );
 };
-
-export default Titles;

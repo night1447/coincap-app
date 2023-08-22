@@ -1,16 +1,16 @@
-import { FC } from 'react';
-import Typography from '../../UI/Typography/Typography.tsx';
 import { IWideCoin } from '../../../models';
-import styles from './coin.module.scss';
-import Button from '../../UI/Button/Button.tsx';
+import { Typography } from '../../UI/Typography/Typography.tsx';
+import { Button } from '../../UI/Button/Button.tsx';
 import { TrashIcon } from '../../UI/Icons';
-import useNameContext from '../../../hooks/useNameContext.ts';
+import { useNameContext } from '../../../hooks/useNameContext.ts';
 
-interface BriefCaseCoinProps {
+import styles from './coin.module.scss';
+
+interface BagCoinProps {
     coin: IWideCoin;
 }
 
-const BriefCaseCoin: FC<BriefCaseCoinProps> = ({ coin }) => {
+export const BagCoin = ({ coin }: BagCoinProps) => {
     const { removeCoin } = useNameContext();
 
     const deleteCoinHandler = () => {
@@ -40,4 +40,3 @@ const BriefCaseCoin: FC<BriefCaseCoinProps> = ({ coin }) => {
     );
 };
 
-export default BriefCaseCoin;

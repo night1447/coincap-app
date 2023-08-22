@@ -1,29 +1,29 @@
-import { FC } from 'react';
-import Typography from '../UI/Typography/Typography.tsx';
-import styles from './briefcase.module.scss';
-import BriefCaseCoins from './BriefCaseCoins/BriefCaseCoins.tsx';
+import { Typography } from '../UI/Typography/Typography.tsx';
+import { BagCoins } from './BagCoins/BagCoins.tsx';
 import getCurrency from '../../utils/getCurrency.ts';
-import Modal from '../UI/Modal/Modal.tsx';
+import { Modal } from '../UI/Modal/Modal.tsx';
 import getRoundingNumber from '../../utils/getRoundingNumber.ts';
-import useNameContext from '../../hooks/useNameContext.ts';
+import { useNameContext } from '../../hooks/useNameContext.ts';
 
-interface BriefCaseInterfaceProps {
-    showBriefCase: boolean;
+import styles from './bag.module.scss';
+
+interface BagProps {
+    showBag: boolean;
     onClose: () => void;
 }
 
-const BriefCaseInterface: FC<BriefCaseInterfaceProps> = ({ showBriefCase, onClose }) => {
-    const briefCase = useNameContext();
+export const Bag = ({ showBag, onClose }: BagProps) => {
+    const bag = useNameContext();
     return (
-        <Modal showModal={showBriefCase} onClose={onClose} className={styles.modal}>
+        <Modal showModal={showBag} onClose={onClose} className={styles.modal}>
             <div className={styles.block}>
                 <Typography type={'h2'} className={styles.title}>Ваш портфель</Typography>
-                {briefCase.coins.length ? <>
-                        <BriefCaseCoins />
+                {bag.coins.length ? <>
+                        <BagCoins />
                         <Typography type={'p'} className={styles.total}>
                         <span>Стоимость
                         портфеля</span>
-                            <b>{getRoundingNumber(briefCase.total)}{getCurrency()}</b>
+                            <b>{getRoundingNumber(bag.total)}{getCurrency()}</b>
                         </Typography>
                     </>
                     :
@@ -33,4 +33,3 @@ const BriefCaseInterface: FC<BriefCaseInterfaceProps> = ({ showBriefCase, onClos
     );
 };
 
-export default BriefCaseInterface;

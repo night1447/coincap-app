@@ -1,17 +1,13 @@
-import { FC, PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 import { createPortal } from 'react-dom';
 
 interface PortalProps {
   containerID: string;
 }
 
-const Portal: FC<PropsWithChildren<PortalProps>> = ({
-                                                      containerID,
-                                                      children,
-                                                    }) => {
-  return createPortal(
-      children,
-      document.getElementById(containerID) || document.body,
-  );
+export const Portal = ({ containerID, children }: PropsWithChildren<PortalProps>) => {
+    return createPortal(
+        children,
+        document.getElementById(containerID) || document.body,
+    );
 };
-export default Portal;

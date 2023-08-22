@@ -17,7 +17,7 @@ export interface IHistory {
   time: number;
 }
 
-export interface IBriefCase {
+export interface IBag {
   coins: IAdditionalCoin[];
   total: number;
   count: number;

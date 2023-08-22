@@ -1,7 +1,7 @@
 import $api from '../api';
 
 const BASE_STEP = 30;
-const useCoinService = () => {
+export const useCoinService = () => {
     const getAllCoins = async (limit?: number) => {
         return await $api.getCoins({ limit });
     };
@@ -20,4 +20,3 @@ const useCoinService = () => {
     return { getAllCoins, getCoinById, getCertainCoins, getHistoryCoin, getCertainPageCoins };
 };
 
-export default useCoinService;

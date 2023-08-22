@@ -1,9 +1,11 @@
-import { FC, PropsWithChildren } from 'react';
-import Portal from '../Portal/Portal.tsx';
-import styles from './modal.module.scss';
-import Button from '../Button/Button.tsx';
+import { PropsWithChildren } from 'react';
+
+import { Portal } from '../Portal/Portal.tsx';
+import { Button } from '../Button/Button.tsx';
 import { SrOnly } from '../SrOnly/SrOnly.tsx';
 import bodyScroll from '../../../utils/bodyScroll.ts';
+
+import styles from './modal.module.scss';
 
 interface ModalProps {
     showModal: boolean;
@@ -11,12 +13,7 @@ interface ModalProps {
     onClose: () => void;
 }
 
-const Modal: FC<PropsWithChildren<ModalProps>> = ({
-                                                      showModal,
-                                                      onClose,
-                                                      className,
-                                                      children,
-                                                  }) => {
+export const Modal = ({ showModal, onClose, className, children }: PropsWithChildren<ModalProps>) => {
     const closeModalHandler = () => {
         onClose();
         bodyScroll.unlock();
@@ -39,4 +36,3 @@ const Modal: FC<PropsWithChildren<ModalProps>> = ({
     }
     return <></>;
 };
-export default Modal;
