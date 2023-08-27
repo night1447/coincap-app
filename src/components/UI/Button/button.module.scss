@@ -1,12 +1,12 @@
 .btn {
   padding: 12px 24px;
+  border: 0;
   border-radius: 4px;
-  transition:
-    color 0.5s,
-    background-color 0.5s,
-    border 0.5s,
-    box-shadow 0.5s,
-    outline 0.5s;
+  transition: color 0.5s,
+  background-color 0.5s,
+  border 0.5s,
+  box-shadow 0.5s,
+  outline 0.5s;
   outline: none;
 
   &:active {
@@ -75,6 +75,7 @@
 
 .close {
   position: relative;
+  font-size: 0;
   background-color: var(--error);
   @extend .circle;
 
