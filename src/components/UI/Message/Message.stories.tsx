@@ -24,7 +24,7 @@ export const Error: Story = {
         showMessage: true,
     },
 };
-export const Info: Story = {
+export const Default: Story = {
     args: {
         type: '',
         children: 'default message',
