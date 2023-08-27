@@ -27,3 +27,12 @@ export const Accent: Story = {
         placeholder: 'Placeholder',
     },
 };
+export const WithValue: Story = {
+    args: {
+        variant: 'accent',
+        type: 'text',
+        htmlFor: 'accent',
+        placeholder: 'Placeholder',
+        value: 'value',
+    },
+};
