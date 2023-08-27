@@ -16,7 +16,7 @@ export const Default: Story = {
         variant: 'default',
     },
 };
-export const Primary: Story = {
+export const Accent: Story = {
     args: {
         children: 'Button',
         variant: 'accent',
@@ -42,7 +42,7 @@ export const Circle: Story = {
         isCircle: true,
     },
 };
-export const CloseButton: Story = {
+export const Close: Story = {
     args: {
         variant: 'close',
         srOnly: 'close button',
