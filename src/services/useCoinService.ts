@@ -1,21 +1,25 @@
-import $api from '../api';
+import { trpc } from '../lib/trpc.ts';
 
 const BASE_STEP = 30;
 export const useCoinService = () => {
+    const query = trpc.coins.getCoins.useQuery({});
+    const coinQuery = trpc.coins.getCoin.useQuery({ id: 'bitcoin' });
+    const historyQuery = trpc.coins.getHistory.useQuery({ id: 'bitcoin' });
     const getAllCoins = async (limit?: number) => {
-        return await $api.getCoins({ limit });
+        return await query.data;
+
     };
     const getCoinById = async (id: string) => {
-        return await $api.getCoin(id);
+        return await coinQuery.data;
     };
     const getCertainCoins = async (ids: string[]) => {
-        return await $api.getCoins({ ids });
+        return await query.data;
     };
     const getHistoryCoin = async (id: string) => {
-        return await $api.getHistory(id);
+        return await historyQuery.data;
     };
     const getCertainPageCoins = async (page: number) => {
-        return await $api.getCoins({ page, step: BASE_STEP });
+        return await query.data;
     };
     return { getAllCoins, getCoinById, getCertainCoins, getHistoryCoin, getCertainPageCoins };
 };
