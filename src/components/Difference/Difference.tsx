@@ -5,7 +5,7 @@ import createCoinIds from '../../utils/createCoinIds.ts';
 import getRoundingNumber from '../../utils/getRoundingNumber.ts';
 import getCurrency from '../../utils/getCurrency.ts';
 import { Typography } from '../UI/Typography/Typography.tsx';
-import { useCoinService } from '../../services/useCoinService.ts';
+import { CoinService } from '../../services/useCoinService.ts';
 import { useNameContext } from '../../hooks/useNameContext.ts';
 
 import styles from './difference.module.scss';
@@ -18,14 +18,14 @@ const initialState: IDifference = {
 export const Difference = () => {
     const bag = useNameContext();
     const [difference, setDifference] = useState<IDifference>(initialState);
-    const { getCertainCoins } = useCoinService();
+    const coins = CoinService().coins({ ids: createCoinIds(bag.coins) });
     useEffect(() => {
         if (bag.coins.length > 0) {
-            getCertainCoins(createCoinIds(bag.coins)).then((items) => {
-                setDifference(getDifferencePrice(bag.coins, items));
-            });
+            if (coins.data) {
+                setDifference(getDifferencePrice(bag.coins, coins.data));
+            }
         }
-    }, [bag.coins]);
+    }, [bag.coins, coins.data]);
     return (
         <div>
             <Typography type={'p'} className={styles.title}>Стоимость портфеля</Typography>

@@ -1,4 +1,4 @@
-import getStylePriceDifference from './getStylePriceDifference.ts';
+import getStylePriceDifference from './getStylePriceDifference';
 import { IAdditionalCoin, ICurrency } from '../models';
 
 export interface IDifference {

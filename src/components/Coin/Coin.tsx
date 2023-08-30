@@ -8,7 +8,7 @@ import { Graphic } from '../Graphic/Graphic.tsx';
 import { Button } from '../UI/Button/Button.tsx';
 import { PurchaseInterface } from '../PurchaseInterface/PurchaseInterface.tsx';
 import { Head } from './Head/Head.tsx';
-import { useCoinService } from '../../services/useCoinService.ts';
+import { CoinService } from '../../services/useCoinService.ts';
 
 import styles from './coin.module.scss';
 
@@ -31,11 +31,13 @@ const initialState: ICurrency = {
 };
 export const Coin = ({ id }: CoinProps) => {
     const [coin, setCoin] = useState<ICurrency>(initialState);
-    const { getCoinById } = useCoinService();
+    const response = CoinService().coin({ id });
     const navigate = useNavigate();
     useEffect(() => {
-        getCoinById(id).then((coin) => setCoin(coin));
-    }, []);
+        if (response.data) {
+            setCoin(response.data);
+        }
+    }, [response.data]);
     const goBackHandler = () => {
         navigate(-1);
     };
