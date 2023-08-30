@@ -6,4 +6,3 @@ export const CoinService = () => {
     const history = trpc.coins.getHistory.useQuery;
     return { coins, coin, history };
 };
-

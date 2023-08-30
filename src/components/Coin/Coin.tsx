@@ -8,7 +8,7 @@ import { Graphic } from '../Graphic/Graphic.tsx';
 import { Button } from '../UI/Button/Button.tsx';
 import { PurchaseInterface } from '../PurchaseInterface/PurchaseInterface.tsx';
 import { Head } from './Head/Head.tsx';
-import { CoinService } from '../../services/useCoinService.ts';
+import { CoinService } from '../../services/CoinService.ts';
 
 import styles from './coin.module.scss';
 

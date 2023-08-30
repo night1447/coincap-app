@@ -3,7 +3,7 @@ import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YA
 
 import getRoundingNumber from '../../utils/getRoundingNumber.ts';
 import { IHistory } from '../../models';
-import { useCoinService } from '../../services/useCoinService.ts';
+import { CoinService } from '../../services/CoinService.ts';
 
 import styles from './graphic.module.scss';
 
@@ -38,10 +38,12 @@ const createGraphicData = (data: IHistory[]) => {
 
 export const Graphic = ({ id, className }: GraphicProps) => {
   const [graphicData, setGraphicData] = useState<IGraphicElement[]>([]);
-  const { getHistoryCoin } = useCoinService();
+  const history = CoinService().history({ id });
   useEffect(() => {
-    getHistoryCoin(id).then((history) => setGraphicData(createGraphicData(history)));
-  }, []);
+    if (history.data) {
+      setGraphicData(createGraphicData(history.data));
+    }
+  }, [history.data]);
   return (
       <div className={`${styles.graphic} ${className || ''}`}>
         <ResponsiveContainer width='100%' height='100%'>

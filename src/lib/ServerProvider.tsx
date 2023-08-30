@@ -8,7 +8,7 @@ export const ServerProvider = ({ children }: PropsWithChildren) => {
     const [trpcClient] = useState(() => trpc.createClient({
         links: [
             httpBatchLink({
-                url: 'http://localhost:3000/trpc',
+                url: import.meta.env.VITE_BACK_URL || '',
             }),
         ],
     }));

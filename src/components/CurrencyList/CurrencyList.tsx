@@ -4,7 +4,7 @@ import { CurrencyItem } from './CurrencyItem/CurrencyItem';
 import { ICurrency } from '../../models';
 
 import styles from './currencies.module.scss';
-import { CoinService } from '../../services/useCoinService.ts';
+import { CoinService } from '../../services/CoinService.ts';
 
 const isMobile = /iPhone|iPad|iPod|Android/i.test(window.navigator.userAgent);
 

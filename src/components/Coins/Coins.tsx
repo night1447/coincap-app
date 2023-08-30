@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { ICurrency } from '../../models';
 import { Coin } from './Coin/Coin.tsx';
 import { Titles } from './Titles/Titles.tsx';
-import { CoinService } from '../../services/useCoinService.ts';
+import { CoinService } from '../../services/CoinService.ts';
 
 import styles from './coins.module.scss';
 

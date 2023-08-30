@@ -7,7 +7,7 @@ import dotenv from "dotenv";
 dotenv.config();
 const app: Application = express();
 app.use(cors());
-app.use('/trpc', trpcExpress.createExpressMiddleware({
+app.use('/api', trpcExpress.createExpressMiddleware({
     router: appRouter
 }))
 

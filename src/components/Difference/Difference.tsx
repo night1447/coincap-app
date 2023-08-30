@@ -5,7 +5,7 @@ import createCoinIds from '../../utils/createCoinIds.ts';
 import getRoundingNumber from '../../utils/getRoundingNumber.ts';
 import getCurrency from '../../utils/getCurrency.ts';
 import { Typography } from '../UI/Typography/Typography.tsx';
-import { CoinService } from '../../services/useCoinService.ts';
+import { CoinService } from '../../services/CoinService.ts';
 import { useNameContext } from '../../hooks/useNameContext.ts';
 
 import styles from './difference.module.scss';

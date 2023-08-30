@@ -1,13 +1,13 @@
 import {trpc} from '../lib/trpc';
 import {z} from 'zod';
 import axios from "axios";
-import {ICurrency, IHistory, ISettings} from "../models";
+import {ICurrency, IHistory, IHistorySettings, ISettings} from "../models";
 import {createSettings} from "../utils/createSettings";
 import {createCoin, createCoins} from "../utils/createCoin";
 
 
 const settings = z.custom<ISettings>();
-const history = z.custom<IHistory>()
+const history = z.custom<IHistorySettings>()
 export const coinRouter = trpc.router({
     getCoins: trpc.procedure.input(settings).output(z.custom<ICurrency[]>()).query(async (settings): Promise<ICurrency[]> => {
         try {

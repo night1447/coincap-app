@@ -1,7 +1,7 @@
 import { PropsWithChildren, useEffect, useState } from 'react';
 
 import { IAdditionalCoin, IBag } from '../models';
-import { CoinService } from '../services/useCoinService';
+import { CoinService } from '../services/CoinService.ts';
 import Context from './index';
 import { addLocalStorage, getLocalStorage } from '../utils/localStorage';
 import createCoinIds from '../utils/createCoinIds';

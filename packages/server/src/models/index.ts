@@ -31,7 +31,12 @@ export interface ISettings {
     ids?: string[];
 }
 
-export interface IHistory {
+export interface IHistorySettings {
     interval?: IInterval,
     id: string
+}
+
+export interface IHistory {
+    priceUsd: string;
+    time: number;
 }
