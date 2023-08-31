@@ -3,6 +3,7 @@ import { Difference } from '../../components/Difference/Difference.tsx';
 import ContextProvider from '../../context/ContextProvider.tsx';
 import * as NameContext from '../../hooks/useNameContext';
 import { IContext } from '../../context';
+import { expect } from '@jest/globals';
 
 describe('Difference test', function() {
     beforeEach(() => {

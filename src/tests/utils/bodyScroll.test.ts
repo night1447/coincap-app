@@ -1,4 +1,5 @@
 import bodyScroll from '../../utils/bodyScroll.ts';
+import { expect } from '@jest/globals';
 
 describe('Body scroll test', () => {
     test('should be lock body scroll', function() {

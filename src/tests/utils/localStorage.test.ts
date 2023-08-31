@@ -1,4 +1,5 @@
 import { addLocalStorage, getLocalStorage } from '../../utils/localStorage.ts';
+import { expect } from '@jest/globals';
 
 describe('LocalStorage test', () => {
     const setItemSpy = jest.spyOn(Storage.prototype, 'setItem');

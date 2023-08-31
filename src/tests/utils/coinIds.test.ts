@@ -1,5 +1,6 @@
 import { ICoin } from '../../models';
 import createCoinIds from '../../utils/createCoinIds.ts';
+import { expect } from '@jest/globals';
 
 describe('Create coin ids test', () => {
     let items: ICoin[] = [];

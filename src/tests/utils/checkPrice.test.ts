@@ -1,4 +1,5 @@
 import { checkPrice } from '../../utils/checkPrice.ts';
+import { expect } from '@jest/globals';
 
 describe('Check price test', () => {
     test('should return the same value', function() {
