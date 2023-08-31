@@ -1,3 +1,5 @@
+import { expect } from '@jest/globals';
+
 import { addLocalStorage, getLocalStorage } from '../../utils/localStorage.ts';
 
 describe('LocalStorage test', () => {

@@ -1,3 +1,5 @@
+import { expect } from '@jest/globals';
+
 import { checkPrice } from '../../utils/checkPrice.ts';
 
 describe('Check price test', () => {

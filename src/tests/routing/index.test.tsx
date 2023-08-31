@@ -1,9 +1,12 @@
+import { expect } from '@jest/globals';
 import { render } from '@testing-library/react';
-import { Coin } from '../../components/Coins/Coin/Coin.tsx';
-import { ICurrency } from '../../models';
 import { Router } from 'react-router';
-import { createMemoryHistory, MemoryHistory } from 'history';
 import { Simulate } from 'react-dom/test-utils';
+import { createMemoryHistory, MemoryHistory } from 'history';
+
+import { ICurrency } from '../../models';
+import { Coin } from '../../components/Coins/Coin/Coin';
+
 import click = Simulate.click;
 
 describe('Routing test', () => {
@@ -36,6 +39,6 @@ describe('Routing test', () => {
                 </table>
             </Router>);
         click(test.getByTestId('coin'));
-        expect(history.location.pathname.search(`${coin.id}`)).not.toBe(-1);
+        expect(history.location.pathname.search(`${coin.id}`)).not.toEqual(-1);
     });
 });

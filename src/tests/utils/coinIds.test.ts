@@ -1,3 +1,5 @@
+import { expect } from '@jest/globals';
+
 import { ICoin } from '../../models';
 import createCoinIds from '../../utils/createCoinIds.ts';
 

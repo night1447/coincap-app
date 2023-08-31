@@ -1,3 +1,5 @@
+import { expect } from '@jest/globals';
+
 import { IAdditionalCoin, ICurrency } from '../../models';
 import getDifferencePrice, { initialState } from '../../utils/getDifferencePrice.ts';
 

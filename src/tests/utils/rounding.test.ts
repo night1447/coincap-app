@@ -1,3 +1,5 @@
+import { expect } from '@jest/globals';
+
 import getRoundingNumber from '../../utils/getRoundingNumber.ts';
 
 describe('Rounding test', () => {

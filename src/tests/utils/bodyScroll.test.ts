@@ -1,3 +1,5 @@
+import { expect } from '@jest/globals';
+
 import bodyScroll from '../../utils/bodyScroll.ts';
 
 describe('Body scroll test', () => {

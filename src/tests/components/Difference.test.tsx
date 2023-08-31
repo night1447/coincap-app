@@ -1,4 +1,6 @@
 import { render } from '@testing-library/react';
+import { expect } from '@jest/globals';
+
 import { Difference } from '../../components/Difference/Difference.tsx';
 import ContextProvider from '../../context/ContextProvider.tsx';
 import * as NameContext from '../../hooks/useNameContext';
