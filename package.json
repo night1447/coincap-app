@@ -11,14 +11,6 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
-  "jest": {
-    "transform": {
-      "^.+\\.tsx?$": "ts-jest"
-    },
-    "moduleNameMapper": {
-      "\\.(css|scss)$": "identity-obj-proxy"
-    }
-  },
   "dependencies": {
     "@tanstack/react-query": "^4.33.0",
     "@trpc/client": "^10.38.0",
@@ -45,6 +37,7 @@
     "@storybook/react-vite": "^7.3.2",
     "@storybook/testing-library": "^0.2.0",
     "@types/jest": "^29.5.4",
+    "@types/jsdom": "^21.1.2",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
@@ -55,6 +48,7 @@
     "eslint-plugin-react-refresh": "^0.4.3",
     "eslint-plugin-storybook": "^0.6.13",
     "identity-obj-proxy": "^3.0.0",
+    "jest-environment-jsdom": "^29.6.4",
     "jsdom": "^22.1.0",
     "prettier": "3.0.1",
     "storybook": "^7.3.2",

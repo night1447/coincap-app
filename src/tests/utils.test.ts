@@ -1,8 +1,11 @@
-import { checkPrice } from '../utils/checkPrice.ts';
-import getRoundingNumber from '../utils/getRoundingNumber.ts';
-import getStylePriceDifference from '../utils/getStylePriceDifference.ts';
-import getDifferencePrice, { initialState } from '../utils/getDifferencePrice.ts';
-import { IAdditionalCoin, ICurrency } from '../models';
+import { checkPrice } from '../utils/checkPrice';
+import getRoundingNumber from '../utils/getRoundingNumber';
+import getStylePriceDifference from '../utils/getStylePriceDifference';
+import getDifferencePrice, { initialState } from '../utils/getDifferencePrice';
+import { IAdditionalCoin, ICoin, ICurrency } from '../models';
+import createCoinIds from '../utils/createCoinIds';
+import getCurrency from '../utils/getCurrency';
+import { addLocalStorage, getLocalStorage } from '../utils/localStorage';
 
 describe('Check price test', () => {
     test('should return the same value', function() {
@@ -124,3 +127,55 @@ describe('Difference price test', () => {
         expect(+difference.percent).toBeLessThan(0);
     });
 });
+
+
+describe('Create coin ids test', () => {
+    let items: ICoin[] = [];
+    beforeEach(() => {
+        items = [
+            {
+                count: 2,
+                coinId: 'bitcoin',
+            }, {
+                count: 4,
+                coinId: 'doggyCoin',
+            }, {
+                count: 10,
+                coinId: 'Ethereum',
+            },
+        ];
+    });
+    test('should be return empty massive', function() {
+        expect(createCoinIds([])).toEqual([]);
+    });
+    test('should be return correct massive', function() {
+        expect(createCoinIds(items)).toEqual(['bitcoin', 'doggyCoin', 'Ethereum']);
+    });
+});
+
+describe('Currency test', () => {
+    test('should be return currency', function() {
+        expect(getCurrency()).toBe('$');
+    });
+});
+
+describe('LocalStorage test', () => {
+    const setItemSpy = jest.spyOn(Storage.prototype, 'setItem');
+    const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
+    test('should be setItem in storage', function() {
+        addLocalStorage('test', 'test');
+        expect(setItemSpy).toHaveBeenCalledWith('test', 'test');
+    });
+    test('should be correct call getLocalStorage', function() {
+        getLocalStorage('test');
+        expect(getItemSpy).toHaveBeenCalledWith('test');
+    });
+    test('should be correct return value from storage', function() {
+        addLocalStorage('test', 'test');
+        expect(getLocalStorage('test')).toEqual('test');
+    });
+    test('should be return null if key is empty', function() {
+        expect(getLocalStorage('')).toBeNull();
+    });
+})
+;
