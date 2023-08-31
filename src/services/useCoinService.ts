@@ -19,4 +19,3 @@ export const useCoinService = () => {
     };
     return { getAllCoins, getCoinById, getCertainCoins, getHistoryCoin, getCertainPageCoins };
 };
-

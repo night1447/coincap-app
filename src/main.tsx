@@ -6,9 +6,12 @@ import router from './routing';
 
 import './index.css';
 import './reset.css';
+import { ServerProvider } from './lib/ServerProvider.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-    <ContextProvider>
-        <RouterProvider router={router} />
-    </ContextProvider>,
+    <ServerProvider>
+        <ContextProvider>
+            <RouterProvider router={router} />
+        </ContextProvider>
+    </ServerProvider>,
 );

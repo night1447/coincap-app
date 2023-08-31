@@ -7,6 +7,12 @@ export interface IDifference {
     className: string;
 }
 
+export const initialState: IDifference = {
+    percent: 0,
+    value: '+0',
+    className: getStylePriceDifference('0'),
+};
+
 const getDifferencePrice = (coins: IAdditionalCoin[], currentCoins: ICurrency[]): IDifference => {
     let totalValue: number = 0;
     let totalPercent: number = 0;
@@ -33,10 +39,6 @@ const getDifferencePrice = (coins: IAdditionalCoin[], currentCoins: ICurrency[])
             className: getStylePriceDifference(totalValue.toString()),
         };
     }
-    return {
-        percent: 0,
-        value: '+0',
-        className: getStylePriceDifference('0'),
-    };
+    return initialState;
 };
 export default getDifferencePrice;

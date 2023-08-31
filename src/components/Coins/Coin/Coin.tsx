@@ -25,7 +25,7 @@ export const Coin = ({ coin, onChange }: CoinProps) => {
     };
 
     return (
-        <tr className={styles.row} onClick={openCoinHandler}>
+        <tr className={styles.row} onClick={openCoinHandler} data-testid={'coin'}>
             <td className={`${styles.mobileHidden}`}>{coin.rank}</td>
             <td className={styles.mobileWrap}>
                 {coin.name}-{coin.symbol}

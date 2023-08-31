@@ -30,7 +30,7 @@ export const Difference = () => {
         <div>
             <Typography type={'p'} className={styles.title}>Стоимость портфеля</Typography>
             <div className={styles.block}>
-                <Typography type={'h3'}>
+                <Typography type={'h3'} data-testid={'total'}>
                     {getRoundingNumber(bag.total)}{getCurrency()}
                 </Typography>
                 <Typography type={'p'}>

@@ -4,13 +4,13 @@ import { useNavigate } from 'react-router';
 
 import { ICurrency } from '../../models';
 import { Section } from '../UI/Section/Section.tsx';
-import { Graphic } from '../Graphic/Graphic.tsx';
 import { Button } from '../UI/Button/Button.tsx';
 import { PurchaseInterface } from '../PurchaseInterface/PurchaseInterface.tsx';
 import { Head } from './Head/Head.tsx';
 import { useCoinService } from '../../services/useCoinService.ts';
 
 import styles from './coin.module.scss';
+import { Graphic } from '../Graphic/Graphic.tsx';
 
 interface CoinProps {
     id: string;
