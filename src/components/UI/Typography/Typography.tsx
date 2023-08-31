@@ -30,10 +30,11 @@ const getCurrentTypeStyles = (type: TypographyType) => {
   }
 };
 
-export const Typography = ({ type, children, className, sx }: PropsWithChildren<TypographyProps>) => {
+export const Typography = ({ type, children, className, sx,...props }: PropsWithChildren<TypographyProps>) => {
     return React.createElement(
         type,
         {
+            ...props,
             className: getCurrentTypeStyles(type) + ` ${className || ''}`,
             style: sx,
         },
