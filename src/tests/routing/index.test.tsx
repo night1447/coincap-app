@@ -36,6 +36,6 @@ describe('Routing test', () => {
                 </table>
             </Router>);
         click(test.getByTestId('coin'));
-        expect(history.location.pathname.search(`${coin.id}`)).not.toBe(-1);
+        expect(history.location.pathname.search(`${coin.id}`)).not.equal(-1);
     });
 });
