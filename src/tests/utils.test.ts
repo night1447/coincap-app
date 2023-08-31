@@ -6,6 +6,7 @@ import { IAdditionalCoin, ICoin, ICurrency } from '../models';
 import createCoinIds from '../utils/createCoinIds';
 import getCurrency from '../utils/getCurrency';
 import { addLocalStorage, getLocalStorage } from '../utils/localStorage';
+import bodyScroll from '../utils/bodyScroll.ts';
 
 describe('Check price test', () => {
     test('should return the same value', function() {
@@ -177,5 +178,18 @@ describe('LocalStorage test', () => {
     test('should be return null if key is empty', function() {
         expect(getLocalStorage('')).toBeNull();
     });
-})
-;
+});
+
+
+describe('Body scroll test', () => {
+    test('should be lock body scroll', function() {
+        bodyScroll.lock();
+        expect(document.body.style.overflow).toEqual('hidden');
+    });
+    test('should be unlock body scroll', function() {
+        bodyScroll.lock();
+        expect(document.body.style.overflow).toEqual('hidden');
+        bodyScroll.unlock();
+        expect(document.body.style.overflow).toEqual('');
+    });
+});
