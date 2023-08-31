@@ -1,10 +1,10 @@
 import { PropsWithChildren, useEffect, useState } from 'react';
 
 import { IAdditionalCoin, IBag } from '../models';
-import { useCoinService } from '../services/useCoinService.ts';
-import Context from './index.ts';
-import { addLocalStorage, getLocalStorage } from '../utils/localStorage.ts';
-import createCoinIds from '../utils/createCoinIds.ts';
+import { CoinService } from '../services/CoinService.ts';
+import Context from './index';
+import { addLocalStorage, getLocalStorage } from '../utils/localStorage';
+import createCoinIds from '../utils/createCoinIds';
 
 const epsilon = 1e-100000;
 const getInitialState = () => {
@@ -18,7 +18,7 @@ const getInitialState = () => {
 };
 const ContextProvider = ({ children }: PropsWithChildren) => {
     const [bag, setBag] = useState<IBag>(getInitialState());
-    const { getCertainCoins } = useCoinService();
+    const coins = CoinService().coins({ ids: createCoinIds(bag.coins) });
     const removeCoinHandler = (payload: IAdditionalCoin) => {
         setBag((state) => {
             const newState: IBag = {
@@ -26,7 +26,7 @@ const ContextProvider = ({ children }: PropsWithChildren) => {
             };
             newState.total = state.total - payload.price * payload.count;
 
-            if (Math.abs(newState.total) < epsilon) {
+            if (Math.abs(newState.total) < epsilon || newState.total < 0) {
                 newState.total = 0;
             }
             newState.coins = state.coins.filter(item => item.coinId !== payload.coinId);
@@ -60,10 +60,10 @@ const ContextProvider = ({ children }: PropsWithChildren) => {
     };
     useEffect(() => {
         if (bag.coins.length) {
-            getCertainCoins(createCoinIds(bag.coins)).then(items => {
-                const currentSum = items.reduce((currentSum, item, index) => currentSum + +item.priceUsd * bag.coins[index].count, 0);
+            if (coins.data) {
+                const currentSum = coins.data.reduce((currentSum, item, index) => currentSum + +item.priceUsd * bag.coins[index].count, 0);
                 changeTotalHandler(currentSum);
-            });
+            }
         }
     }, [bag.coins]);
 

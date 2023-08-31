@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { ICurrency } from '../../models';
 import { Coin } from './Coin/Coin.tsx';
 import { Titles } from './Titles/Titles.tsx';
-import { useCoinService } from '../../services/useCoinService.ts';
+import { CoinService } from '../../services/CoinService.ts';
 
 import styles from './coins.module.scss';
 
@@ -14,12 +14,12 @@ interface CoinsProps {
 
 export const Coins = ({ page, onChange }: CoinsProps) => {
     const [coins, setCoins] = useState<ICurrency[]>([]);
-    const { getCertainPageCoins } = useCoinService();
+    const response = CoinService().coins({ page });
     useEffect(() => {
-        getCertainPageCoins(page).then((items) => {
-            setCoins((prevState) => [...prevState, ...items]);
-        });
-    }, [page]);
+        if (response.data) {
+            setCoins((prevState) => [...prevState, ...response.data]);
+        }
+    }, [page, response.data]);
 
     return (
         <table className={styles.table}>

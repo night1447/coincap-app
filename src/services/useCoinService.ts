@@ -1,4 +1,4 @@
-import $api from '../api';
+import $api from '../api/api.ts';
 
 const BASE_STEP = 30;
 export const useCoinService = () => {
