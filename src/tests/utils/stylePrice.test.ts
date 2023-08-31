@@ -1,5 +1,6 @@
-import getStylePriceDifference from '../../utils/getStylePriceDifference.ts';
 import { expect } from '@jest/globals';
+
+import getStylePriceDifference from '../../utils/getStylePriceDifference.ts';
 
 describe('Style price test', () => {
     test('should be return neutral style', function() {

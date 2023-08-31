@@ -1,6 +1,7 @@
+import { expect } from '@jest/globals';
+
 import { IAdditionalCoin, ICurrency } from '../../models';
 import getDifferencePrice, { initialState } from '../../utils/getDifferencePrice.ts';
-import { expect } from '@jest/globals';
 
 describe('Difference price test', () => {
     let currentCoins: ICurrency[] = [];

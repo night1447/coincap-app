@@ -1,11 +1,13 @@
-import { render } from '@testing-library/react';
-import { Coin } from '../../components/Coins/Coin/Coin';
-import { ICurrency } from '../../models';
-import { Router } from 'react-router';
-import { createMemoryHistory, MemoryHistory } from 'history';
-import { Simulate } from 'react-dom/test-utils';
-import click = Simulate.click;
 import { expect } from '@jest/globals';
+import { render } from '@testing-library/react';
+import { Router } from 'react-router';
+import { Simulate } from 'react-dom/test-utils';
+import { createMemoryHistory, MemoryHistory } from 'history';
+
+import { ICurrency } from '../../models';
+import { Coin } from '../../components/Coins/Coin/Coin';
+
+import click = Simulate.click;
 
 describe('Routing test', () => {
     const coin: ICurrency = {

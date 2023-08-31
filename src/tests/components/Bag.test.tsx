@@ -1,9 +1,10 @@
-import { IContext } from '../../context';
+import { expect } from '@jest/globals';
 import { render } from '@testing-library/react';
+
+import { IContext } from '../../context';
 import ContextProvider from '../../context/ContextProvider.tsx';
 import { Bag } from '../../components/Bag/Bag.tsx';
 import * as NameContext from '../../hooks/useNameContext';
-import { expect } from '@jest/globals';
 
 describe('Bag test', () => {
     const spyInstance = jest.spyOn(NameContext, 'useNameContext');
