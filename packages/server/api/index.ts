@@ -1,4 +1,5 @@
 import app from '../src/main';
 
-export * from '../src/index';
-export { app };
+import * as types from '../src/index';
+
+export { app, types };
