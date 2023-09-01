@@ -36,7 +36,7 @@ describe('Interaction with interface coin', function() {
         input.should('have.value', '9.99');
     });
     it('should be add coin', function() {
-        form.contains('Подтвердить').click();
+        cy.get('form').contains('Подтвердить').click();
         cy.get('#message').should('not.be.empty');
     });
 });
@@ -63,11 +63,11 @@ describe('Interaction with Profile', function() {
 describe('Interaction with bag', function() {
     let form: Cypress.Chainable<JQuery<HTMLFormElement>>;
     beforeEach(() => {
-        form = cy.get('form');
         cy.visit('/');
         cy.get('tr').contains('+').eq(0).click();
-        form.type('10').should('have.value', '10');
-        form.contains('Подтвердить').click();
+        form = cy.get('form');
+        form.get('input[type=number]').type('10').should('have.value', '10');
+        cy.get('form').contains('Подтвердить').click();
         cy.get('#message').should('not.be.empty');
         cy.get('#message button').click();
         cy.get('#modal button').contains('Закрыть модальное окно').parent().click();
