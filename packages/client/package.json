@@ -26,7 +26,8 @@
     "react-router": "^6.14.2",
     "react-router-dom": "^6.14.2",
     "recharts": "^2.7.2",
-    "sass": "^1.64.2"
+    "sass": "^1.64.2",
+    "server": "1.0.0"
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.22.11",
