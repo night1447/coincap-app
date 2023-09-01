@@ -6,9 +6,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 const app: Application = express();
-app.use(cors({
-    origin: 'https://coincap-app-server.vercel.app/'
-}));
+app.use(cors());
 app.use('/api', trpcExpress.createExpressMiddleware({
     router: appRouter
 }))
