@@ -16,3 +16,5 @@ const PORT: number = Number(process.env.PORT) || 3000;
 app.listen(PORT, () => {
     console.log(`server running on Port: ${PORT}`);
 })
+
+module.exports = app;
