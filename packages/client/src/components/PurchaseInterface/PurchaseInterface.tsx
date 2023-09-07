@@ -10,9 +10,10 @@ import getRoundingNumber from '../../utils/getRoundingNumber';
 import { useNameContext } from '../../hooks/useNameContext';
 
 import styles from './buying.module.scss';
+import { maximumValue, minimumValue } from '../../utils/constants';
 
 interface PurchaseInterfaceProps {
-  coin: ICurrency;
+    coin: ICurrency;
 }
 
 interface IMessageSettings {
@@ -37,18 +38,25 @@ export const PurchaseInterface = ({ coin }: PurchaseInterfaceProps) => {
     event.preventDefault();
     let message: string;
     let type: IMessageType;
-    if (!value || +value === 0) {
-      message = `Увы нечего добавлять, вы не увеличили количество валюты`;
-      type = 'error';
+    if (+value < minimumValue || +value > maximumValue) {
+        message = `Значение слишком большое или слишком маленькое`;
+        type = 'error';
     } else {
-      message = `Отлично, ${coin.symbol} добавлена в ваш кошелек в размере ${+value}`;
-      type = 'success';
-      addCoin({
-        coinId: coin.id,
-        price: coin.priceUsd,
-        count: +value,
-      });
-      setValue('');
+        if (!value || +value === 0) {
+            message = `Увы нечего добавлять, вы не увеличили количество валюты`;
+            type = 'error';
+        } else {
+            message = `Отлично, ${
+                coin.symbol
+            } добавлена в ваш кошелек в размере ${+value}`;
+            type = 'success';
+            addCoin({
+                coinId: coin.id,
+                price: coin.priceUsd,
+                count: +value,
+            });
+            setValue('');
+        }
     }
     setMessageSettings({
       showMessage: true,
@@ -74,53 +82,56 @@ export const PurchaseInterface = ({ coin }: PurchaseInterfaceProps) => {
   };
 
   const changeValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setValue(checkCorrectionNumber(e.target.value).toString());
+      setValue(checkCorrectionNumber(e.target.value).toString());
   };
 
-
   const closeMessageHandler = () => {
-    setMessageSettings(initialState);
+      setMessageSettings(initialState);
   };
 
   return (
       <form onSubmit={submitFormHandler} className={styles.form}>
-        <ProductInformation coin={coin} />
-        <div className={styles.wrapper}>
-          <Button
-              variant={'accent'}
-              type={'button'}
-              isCircle={true}
-              onClick={decreaseValueHandler}
+          <ProductInformation coin={coin} />
+          <div className={styles.wrapper}>
+              <Button
+                  variant={'accent'}
+                  type={'button'}
+                  isCircle={true}
+                  onClick={decreaseValueHandler}
+              >
+                  -
+              </Button>
+              <TextField
+                  type={'number'}
+                  value={value}
+                  min={minimumValue}
+                  max={maximumValue}
+                  onInput={changeValueHandler}
+                  variant={'accent'}
+                  htmlFor={'text'}
+                  step={'any'}
+                  placeholder={`0.1${coin.symbol}`}
+              />
+              <Button
+                  variant={'accent'}
+                  type={'button'}
+                  isCircle={true}
+                  onClick={increaseValueHandler}
+              >
+                  +
+              </Button>
+          </div>
+          <Total count={+value} price={coin.priceUsd} />
+          <Message
+              type={messageSettings.type}
+              showMessage={messageSettings.showMessage}
+              onClose={closeMessageHandler}
           >
-            -
+              {messageSettings.message}
+          </Message>
+          <Button variant={'success'} type={'submit'}>
+              Подтвердить
           </Button>
-          <TextField
-              type={'number'}
-              value={value}
-              onInput={changeValueHandler}
-              variant={'accent'}
-              htmlFor={'text'}
-              step={'any'}
-              placeholder={`0.1${coin.symbol}`}
-          />
-          <Button
-              variant={'accent'}
-              type={'button'}
-              isCircle={true}
-              onClick={increaseValueHandler}
-          >
-            +
-          </Button>
-        </div>
-        <Total count={+value} price={coin.priceUsd} />
-        <Message type={messageSettings.type}
-                 showMessage={messageSettings.showMessage}
-                 onClose={closeMessageHandler}>
-          {messageSettings.message}
-        </Message>
-        <Button variant={'success'} type={'submit'}>
-          Подтвердить
-        </Button>
       </form>
   );
 };

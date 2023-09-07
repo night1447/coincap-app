@@ -5,15 +5,17 @@ import { CoinService } from '../services/CoinService';
 import Context from './index';
 import { addLocalStorage, getLocalStorage } from '../utils/localStorage';
 import createCoinIds from '../utils/createCoinIds';
+import { minimumValue } from '../utils/constants';
 
-const epsilon = 1e-100000;
 const getInitialState = () => {
     const defaultState: IBag = {
         coins: [],
         count: 0,
         total: 0,
     };
-    const initialState: IBag = getLocalStorage('bag') ? JSON.parse(getLocalStorage('bag') as string) : defaultState;
+    const initialState: IBag = getLocalStorage('bag')
+        ? JSON.parse(getLocalStorage('bag') as string)
+        : defaultState;
     return initialState;
 };
 const ContextProvider = ({ children }: PropsWithChildren) => {
@@ -26,7 +28,7 @@ const ContextProvider = ({ children }: PropsWithChildren) => {
             };
             newState.total = state.total - payload.price * payload.count;
 
-            if (Math.abs(newState.total) < epsilon || newState.total < 0) {
+            if (Math.abs(newState.total) < minimumValue || newState.total < 0) {
                 newState.total = 0;
             }
             newState.coins = state.coins.filter(item => item.coinId !== payload.coinId);

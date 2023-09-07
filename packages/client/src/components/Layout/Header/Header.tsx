@@ -1,7 +1,7 @@
-import { Profile } from '../../Profile/Profile.tsx';
-import { CurrencyList } from '../../CurrencyList/CurrencyList.tsx';
-import { Container } from '../../UI/Container/Container.tsx';
-import { Difference } from '../../Difference/Difference.tsx';
+import { Profile } from '../../Profile/Profile';
+import { CurrencyList } from '../../CurrencyList/CurrencyList';
+import { Container } from '../../UI/Container/Container';
+import { Difference } from '../../Difference/Difference';
 
 import styles from './header.module.scss';
 
@@ -10,11 +10,11 @@ export const Header = () => {
         <header className={styles.header}>
             <Container>
                 <div className={styles.wrapper}>
+                    <Profile />
                     <div className={styles.inner}>
-                        <Profile />
-                        <Difference />
+                        <CurrencyList />
                     </div>
-                    <CurrencyList />
+                    <Difference />
                 </div>
             </Container>
         </header>

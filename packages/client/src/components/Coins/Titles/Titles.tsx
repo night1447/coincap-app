@@ -13,7 +13,7 @@ const titles: ITitle[] = [
     { className: `${styles.tabletHidden}`, title: 'VWAP(24Hr)' },
     { className: `${styles.tabletHidden}`, title: 'Снабжение' },
     { className: `${styles.tabletHidden}`, title: 'Объем(24Hr)' },
-    { className: '', title: 'Изменения(24Hr)' },
+    { className: '', title: 'Изменения (24Hr)' },
 ];
 
 export const Titles = () => {
