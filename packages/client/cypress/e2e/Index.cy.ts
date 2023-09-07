@@ -82,3 +82,5 @@ describe('Interaction with bag', function() {
     });
 });
 
+
+export default {};

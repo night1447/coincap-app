@@ -11,3 +11,4 @@ describe('DisplayingCoin', function() {
         expect(location.href.includes('/bitcoin')).equal(false);
     });
 });
+export default {};
