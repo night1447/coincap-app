@@ -25,6 +25,7 @@ export const Modal = ({ showModal, onClose, className, children }: PropsWithChil
                 <Button
                     type={'button'}
                     variant={'close'}
+                    data-testid={'close-modal'}
                     className={styles.close}
                     onClick={closeModalHandler}
                 >

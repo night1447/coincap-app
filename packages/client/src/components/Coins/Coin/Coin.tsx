@@ -68,6 +68,7 @@ export const Coin = ({ coin, onChange }: CoinProps) => {
                 </b>
                 <Button
                     type={'button'}
+                    data-testid={'add-coin'}
                     variant={'success'}
                     isCircle={true}
                     onClick={openModalHandler}

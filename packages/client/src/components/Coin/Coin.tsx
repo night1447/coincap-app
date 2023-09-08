@@ -45,6 +45,7 @@ export const Coin = ({ id }: CoinProps) => {
     return (
         <Section>
             <Button
+                data-testid={'back-to'}
                 type={'button'}
                 variant={'error'}
                 onClick={goBackHandler}

@@ -1,13 +1,13 @@
 describe('DisplayingCoin', function() {
     it('should be open page', function() {
         cy.visit('/bitcoin');
-        cy.get('main').should('not.be.empty');
+        cy.get('[data-testid=content]').should('not.be.empty');
     });
     it('should be return back', function() {
         cy.visit('/');
-        cy.get('tr').contains('+').eq(0).click();
+        cy.get('[data-testid=add-coin]').eq(0).click();
         cy.visit('/bitcoin');
-        cy.contains('Назад').click();
+        cy.get('[data-testid=back-to]').click();
         expect(location.href.includes('/bitcoin')).equal(false);
     });
 });

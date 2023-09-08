@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 
 import styles from './button.module.scss';
-import { SrOnly } from '../SrOnly/SrOnly.tsx';
+import { SrOnly } from '../SrOnly/SrOnly';
 
 export interface ButtonProps {
     type: 'button' | 'submit' | 'reset';
@@ -15,6 +15,7 @@ export interface ButtonProps {
 export const Button = (props: PropsWithChildren<ButtonProps>) => {
     return (
         <button
+            {...props}
             type={props.type}
             onClick={props.onClick}
             className={`${styles.btn} ${styles[props.variant]} ${

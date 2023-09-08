@@ -1,9 +1,9 @@
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 
-import {ICurrency} from '../../models';
-import {Coin} from './Coin/Coin';
-import {Titles} from './Titles/Titles';
-import {CoinService} from '../../services/CoinService';
+import { ICurrency } from '../../models';
+import { Coin } from './Coin/Coin';
+import { Titles } from './Titles/Titles';
+import { CoinService } from '../../services/CoinService';
 
 import styles from './coins.module.scss';
 
@@ -25,12 +25,12 @@ export const Coins = ({page, onChange}: CoinsProps) => {
     }, [response]);
 
     return (
-        <table className={styles.table}>
+        <table className={styles.table} data-testid={'table'}>
             <tbody>
-            <Titles/>
-            {coins.map((item) => (
-                <Coin key={Math.random()} onChange={onChange} coin={item}/>
-            ))}
+                <Titles />
+                {coins.map((item) => (
+                    <Coin key={Math.random()} onChange={onChange} coin={item} />
+                ))}
             </tbody>
         </table>
     );

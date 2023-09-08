@@ -30,6 +30,7 @@ export const BagCoin = ({ coin }: BagCoinProps) => {
                 {coin.count.toString()}{coin.coin.symbol}
             </Typography>
             <Button type={'button'}
+                    data-testid={'coin-delete'}
                     onClick={deleteCoinHandler}
                     variant={'error'}
                     className={styles.delete}

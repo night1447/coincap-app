@@ -90,10 +90,11 @@ export const PurchaseInterface = ({ coin }: PurchaseInterfaceProps) => {
   };
 
   return (
-      <form onSubmit={submitFormHandler} className={styles.form}>
+      <form onSubmit={submitFormHandler} className={styles.form} data-testid={'purchase'}>
           <ProductInformation coin={coin} />
           <div className={styles.wrapper}>
               <Button
+                  data-testid={'purchase-minus'}
                   variant={'accent'}
                   type={'button'}
                   isCircle={true}
@@ -108,11 +109,12 @@ export const PurchaseInterface = ({ coin }: PurchaseInterfaceProps) => {
                   max={maximumValue}
                   onInput={changeValueHandler}
                   variant={'accent'}
-                  htmlFor={'text'}
+                  htmlFor={'purchase-input'}
                   step={'any'}
                   placeholder={`0.1${coin.symbol}`}
               />
               <Button
+                  data-testid={'purchase-plus'}
                   variant={'accent'}
                   type={'button'}
                   isCircle={true}
@@ -129,7 +131,7 @@ export const PurchaseInterface = ({ coin }: PurchaseInterfaceProps) => {
           >
               {messageSettings.message}
           </Message>
-          <Button variant={'success'} type={'submit'}>
+          <Button variant={'success'} type={'submit'} data-testid={'purchase-submit'}>
               Подтвердить
           </Button>
       </form>
