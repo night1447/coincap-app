@@ -1,5 +1,5 @@
-import { Layout } from '../../components/Layout/Layout.tsx';
-import { IndexSection } from '../../components/IndexSection/IndexSection.tsx';
+import { Layout } from '../../components/Layout/Layout';
+import { IndexSection } from '../../components/IndexSection/IndexSection';
 
 const MainPage = () => {
     return (

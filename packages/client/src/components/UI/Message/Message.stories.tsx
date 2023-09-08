@@ -1,5 +1,6 @@
-import { Message } from './Message.tsx';
 import { Meta, StoryObj } from '@storybook/react';
+
+import { Message } from './Message';
 
 const meta: Meta<typeof Message> = {
     component: Message,

@@ -1,10 +1,10 @@
 import { useCallback, useState } from 'react';
 
 import { ICurrency } from '../../models';
-import { Coins } from '../Coins/Coins.tsx';
-import { Button } from '../UI/Button/Button.tsx';
-import { Section } from '../UI/Section/Section.tsx';
-import { AddModal } from '../AddModal/AddModal.tsx';
+import { Coins } from '../Coins/Coins';
+import { Button } from '../UI/Button/Button';
+import { Section } from '../UI/Section/Section';
+import { AddModal } from '../AddModal/AddModal';
 
 import styles from './main.module.scss';
 

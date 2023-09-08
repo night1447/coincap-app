@@ -1,5 +1,6 @@
 import { PropsWithChildren } from 'react';
-import { Container } from '../Container/Container.tsx';
+
+import { Container } from '../Container/Container';
 
 import styles from './section.module.scss';
 

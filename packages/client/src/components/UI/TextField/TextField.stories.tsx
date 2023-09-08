@@ -1,7 +1,8 @@
-import '../../../index.css';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { TextField } from './TextField.tsx';
+import { TextField } from './TextField';
+
+import '../../../index.css';
 
 const meta: Meta<typeof TextField> = {
     component: TextField,

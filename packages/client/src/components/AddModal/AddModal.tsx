@@ -1,6 +1,6 @@
 import { ICurrency } from '../../models';
-import { PurchaseInterface } from '../PurchaseInterface/PurchaseInterface.tsx';
-import { Modal } from '../UI/Modal/Modal.tsx';
+import { PurchaseInterface } from '../PurchaseInterface/PurchaseInterface';
+import { Modal } from '../UI/Modal/Modal';
 
 import styles from './add.module.scss';
 

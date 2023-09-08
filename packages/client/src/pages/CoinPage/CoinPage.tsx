@@ -1,6 +1,7 @@
-import { Coin } from '../../components/Coin/Coin.tsx';
 import { useParams } from 'react-router';
-import { Layout } from '../../components/Layout/Layout.tsx';
+
+import { Coin } from '../../components/Coin/Coin';
+import { Layout } from '../../components/Layout/Layout';
 
 const CoinPage = () => {
     const params = useParams();

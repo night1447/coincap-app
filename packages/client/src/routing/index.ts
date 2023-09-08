@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import routes from './routes.tsx';
+import routes from './routes';
 
 const index = createBrowserRouter(routes);
 

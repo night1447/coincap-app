@@ -1,7 +1,8 @@
 import React, { PropsWithChildren } from 'react';
 
-import styles from './button.module.scss';
 import { SrOnly } from '../SrOnly/SrOnly';
+
+import styles from './button.module.scss';
 
 export interface ButtonProps {
     type: 'button' | 'submit' | 'reset';
