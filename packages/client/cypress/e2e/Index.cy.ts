@@ -56,7 +56,7 @@ describe('Interaction with Profile', function() {
     it('should open empty profile', function() {
         cy.get('[data-testid=profile-show]').click();
         cy.get('#modal').should('not.be.empty');
-        cy.get('#modal').contains('Ваш портфель пуст').should('not.be.empty');
+        cy.get('[data-testid=bag-empty]').should('not.be.undefined');
     });
 });
 describe('Interaction with bag', function() {
@@ -73,11 +73,11 @@ describe('Interaction with bag', function() {
         cy.get('[data-testid=profile-show]').click();
     });
     it('should have coin', function() {
-        cy.get('#modal').contains('Стоимость портфеля');
+        cy.get('[data-testid=bag-total]').should('not.be.undefined');
     });
     it('should delete coin', function() {
         cy.get('[data-testid=coin-delete]').click();
-        cy.get('#modal').contains('Ваш портфель пуст').should('not.be.empty');
+        cy.get('[data-testid=bag-empty]').should('not.be.undefined');
     });
 });
 

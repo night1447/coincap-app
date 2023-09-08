@@ -20,14 +20,14 @@ export const Bag = ({ showBag, onClose }: BagProps) => {
                 <Typography type={'h2'} className={styles.title}>Ваш портфель</Typography>
                 {bag.coins.length ? <>
                         <BagCoins />
-                        <Typography type={'p'} className={styles.total}>
+                        <Typography data-testid={'bag-total'} type={'p'} className={styles.total}>
                         <span>Стоимость
                         портфеля</span>
                             <b>{getRoundingNumber(bag.total)}{getCurrency()}</b>
                         </Typography>
                     </>
                     :
-                    <Typography type={'p'} className={styles.empty}>Ваш портфель пуст</Typography>}
+                    <Typography type={'p'} data-testid={'bag-empty'} className={styles.empty}>Ваш портфель пуст</Typography>}
             </div>
         </Modal>
     );
